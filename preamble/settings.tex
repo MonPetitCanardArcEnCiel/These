@@ -1,0 +1,32 @@
+% CUSTOM LENGTHS
+\newlength{\nd}
+\setlength{\nd}{1.3cm}
+\newlength{\ndv}
+\setlength{\ndv}{3.5cm}
+
+\hfuzz=1pt
+
+% NOMENCLATURE
+\renewcommand\nomgroup[1]{%
+  \item[\bfseries
+  \ifstrequal{#1}{S}{Sigles}{%
+  \ifstrequal{#1}{V}{Variables}{%
+  \ifstrequal{#1}{C}{Codes}}}%
+]}
+
+% lipsum
+\setlipsum{default-range=1-5}
+
+% Graphicx
+\graphicspath{ {images/} }
+
+% Tikz
+\usetikzlibrary{backgrounds,external,shapes.geometric, arrows,calc,positioning,decorations.pathmorphing}
+\usepgfplotslibrary{external}
+
+% PGFPLOTS
+\pgfplotsset{width=.75\linewidth,compat=1.18}
+\pgfplotstableset{
+	every head row/.style={after row=\midrule},
+	fixed, precision=3,
+	}

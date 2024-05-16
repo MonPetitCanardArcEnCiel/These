@@ -1,0 +1,86 @@
+% Optimisation optique physique et aérodynamique
+\chapter{Optimisation Bidisciplinaire : Optique Physique et CFD}
+\nomenclature[S]{CFD}{Dynamique des fluides numérique (Computational Fluid Dynamics)}
+\chaptermark{Optim OP-CFD}
+\section[Présentation du cas de référence]{Présentation du cas de référence\sectionmark{Cas de référence}}
+\sectionmark{Cas de référence}
+\nomenclature[S]{GFA}{Géométrie de référence (Generic Fighter Aircraft)}%
+
+\lipsum
+\subsection{Géométrie}
+\lipsum
+
+\begin{figure}[htp]
+    \centering
+    \input{chapters/include/def-sref.tex}
+    \caption{Définition de la \sref{}.}
+    \label{fig:sref}
+\end{figure}
+
+\subsection{Analyse aérodynamique}
+\lipsum
+\subsection{Analyse SER}
+\nomenclature[S]{SER}{Surface \'Equivalente RADAR}
+
+\lipsum
+\section[Présentation des outils d'optimisation]{Présentation des outils d'optimisation\sectionmark{Outils}}
+\sectionmark{Outils}
+\lipsum
+\subsection{Présentation du processus d'optimsation}
+\lipsum
+
+\begin{figure}[htp]
+    \centering
+    \input{chapters/include/graph-optim}
+    \caption{Organigrame du processus d'optimisation automatique.}
+    \label{fig:optim-process}
+\end{figure}
+
+\subsection{Présentation du modeleur CAO}
+\nomenclature[S]{CAO}{Conception Assistée par Ordinateur}
+\nomenclature[C]{GANIMEDE}{Modeleur CAO}
+\lipsum
+
+\section{Coûts et Contraintes}
+\lipsum
+
+\begin{figure}
+	\centering
+    \input{chapters/include/graph-gammad.tex}
+    \caption{La fonction $\Gamma_d(\theta)$ avec $d = 30^\circ$ pour différentes valeurs du paramètre $\tau$.}
+	\label{fig:gamma-d}
+\end{figure}
+
+\section{Résultats}
+\lipsum
+\subsection{Optimisation aérodynamique}
+\lipsum
+\subsection{Optimisation SER}
+\lipsum
+
+\begin{figure}[htp]
+    \centering
+    \input{chapters/include/schemas-polaire.tex}
+    \caption{Schéma présentant les coefficients d'une polaire aérodynamique.}
+    \label{fig:schemas-polaire}
+\end{figure}
+
+\subsection{Pareto-optimalité}
+\begin{table}
+    {
+    \footnotesize
+    \input{chapters/include/pareto-table.tex}
+    }
+    \caption{Résumé des valeurs des critères et des contraintes pour certains points du front de Pareto.}
+    \label{tab:recap}
+\end{table}
+
+\lipsum
+
+\begin{figure}[htp]
+    \centering
+    \input{chapters/include/pareto-plot.tex}
+    \caption{Front de Pareto}
+    \label{fig:pareto-front}
+\end{figure}
+

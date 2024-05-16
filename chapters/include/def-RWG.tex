@@ -1,0 +1,82 @@
+\tdplotsetmaincoords{90}{140}
+\begin{tikzpicture}[tdplot_main_coords,scale=2.5]
+    \tikzstyle{line} = [thick]
+    \tikzstyle{arrow} = [->,>=stealth]
+    \tikzstyle{vec} = [thick,->,>={latex[scale=2]}]
+    \tikzstyle{lrarrow} = [<->,>=to]
+
+    % Sommets des triangles et origine
+    \coordinate (O) at (0,0,0);
+    \coordinate (a1) at (0,-.5,1.2);
+    \coordinate (a2) at (0,.5,1.2);
+    \coordinate (a3p) at (1,0,0.2);
+    \coordinate (a3m) at (-1,0,0.2);
+
+    % Coordonées pour placer les légendes
+    \coordinate (rhonp) at (1.5,0,.7);
+    \coordinate (rhonm) at (-1.5,0,.7);
+    \coordinate (Tnp) at (1.5,0,1.1);
+    \coordinate (Tnm) at (-1.5,0,1.1);
+
+    % Labels de l'origine et du vecteur position
+    \node[anchor=north] at (O) {$O$};
+    \node[anchor=south] at (O) {$\rr$};
+
+    % Placement des extremites de la longueur ln et du label
+    \node (ln1) [above=0.1 of a1] {};
+    \node (ln2) [above=0.1 of a2] {};
+    \node[anchor=south] (ln) at ($(ln1)!0.5!(ln2)$) {$l_n$};
+
+    % coordonnes des barycentres des deux triangles
+    \coordinate (bp) at (barycentric cs:a1=1,a2=1,a3p=1);
+    \coordinate (bm) at (barycentric cs:a1=1,a2=1,a3m=1);
+
+    % Coordonnees pour les fleches des legendes de Tn
+    % Un peu au dessus du  barycentre parce que c'est plus joli
+    \coordinate (btp) at ($(bp)!0.1!(ln)$);
+    \coordinate (btm) at ($(bm)!0.1!(ln)$);
+
+    % Coordonnees pour l'extremites des vecteurs rn
+    % Un peu en dessous du barycentre parce que c'est deng shui
+    \coordinate (brp) at ($(bp)!0.2!(a3p)$);
+    \coordinate (brm) at ($(bm)!0.2!(a3m)$);
+
+    % Coordonnees pour les fleches des legendes de rho_n
+    % Au milieu des rn
+    \coordinate (rnp) at ($(brp)!0.5!(a3p)$);
+    \coordinate (rnm) at ($(brm)!0.5!(a3m)$);
+
+    % ecriture des labels
+    \node[anchor=south] at (rhonp) {$\boldsymbol{\rho}_n^+ = \rr-\rr_n^+$};
+    \node[anchor=south] at (rhonm) {$\boldsymbol{\rho}_n^- = \rr-\rr_n^-$};
+
+    \node[anchor=east] at (Tnp) {$T_n^+$};
+    \node[anchor=west] at (Tnm) {$T_n^-$};
+
+    \node[anchor=north] at (a3p) {$\rr_{n^+}$};
+    \node[anchor=north] at (a3m) {$\rr_{n^-}$};
+
+    % Dessing des triangles
+    % ATTENTION le triangle de derriere doit etre dessine en premier,
+    % sinon il apparaît devant
+    \draw[fill=white] (a1) -- (a2) -- (a3m) -- cycle;
+    \draw[fill=white] (a1) -- (a2) -- (a3p) -- cycle;
+
+    % Double fleche ln
+    \draw[lrarrow] (ln1) -- (ln2);
+
+    % Vecteurs positions
+    \draw[dashed,vec] (O) -- (brp);
+    \draw[dashed,vec] (O) -- (brm);
+
+    % Vecteurs rn
+    \draw[vec] (a3p) -- (brp);
+    \draw[vec] (brm) -- (a3m);
+
+    % Fleches des legendes
+    \draw[arrow] (rhonp) to[bend right] (rnp);
+    \draw[arrow] (rhonm) to[bend left] (rnm);
+
+    \draw[arrow] (Tnp) to[bend left] (btp);
+    \draw[arrow] (Tnm) to[bend right] (btm);
+\end{tikzpicture}

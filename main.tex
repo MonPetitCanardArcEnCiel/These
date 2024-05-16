@@ -1,0 +1,90 @@
+\documentclass[12pt,twoside]{report}
+
+%  PACKAGES ---------------------------------------------------------------------------------------
+\input{preamble/packages}
+
+% \setmainfont{Teen Spirit}
+% \usepackage{emerald}
+% \ECFTeenSpirit
+
+% \renewcommand*{\rmdefault}{fts}
+% \usepackage{fontspec}
+% \setmainfont{xkcd}
+
+% SETTINGS ---------------------------------------------------------------------------------------
+\input{preamble/settings.tex}
+
+% LAYOUT ---------------------------------------------------------------------------
+\input{preamble/layout}
+
+% COMMANDS -------------------------------------------------------------------------
+\input{preamble/commands}
+% TITLE PAGE ---------------------------------------------------------------------------------------
+\newcommand{\thetitle}{Méthodologies de Conception Bidisciplinaire de Forme d'Avion pour l'Aérodynamique et l'\'Electromagnétisme}
+\newcommand{\theshortitle}{Ma super theses}
+\newcommand{\thesubtitle}{A long and bloody tale}
+\newcommand{\theauthor}{Charles Thoulon}
+
+% DOCUMENT -----------------------------------------------------------------------------------------
+\makenomenclature
+
+\begin{document}
+\input{chapters/title}
+
+\pagestyle{plain}
+\pagenumbering{roman}
+% \chapter*{Abstract}
+\input{chapters/abstract}
+
+\chapter*{}
+\epigraph{La phrase la plus excitante à entendre en sciences, celle qui annonce de nouvelles découvertes, n'est pas "Eureka" mais "Tiens c'est marrant ça".}{\textit{Isaac Asimov}}
+\epigraph{Les solutions viennent presque toujours de la direction à laquelle on s'attend le moins. Cela signifie qu'il ne sert à rien de chercher dans cette direction car la solution ne viendra pas de là.}{\textit{Douglas Adams}}
+
+\chapter*{Dédicace}
+\label{ch:dedicace}
+\addcontentsline{toc}{chapter}{\nameref{ch:dedicace}}
+
+% \chapter*{Déclaration}
+
+\chapter*{Remerciements}
+\label{ch:thx}
+\addcontentsline{toc}{chapter}{\nameref{ch:thx}}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
+\hypertarget{mytableofcontents}{}
+\tableofcontents
+\listoffigures
+\listoftables
+\hypertarget{abrr}{\printnomenclature}
+
+\clearpage
+
+\pagestyle{fancy}
+
+% Chapter : Intro
+\pagenumbering{arabic}
+\include{chapters/intro}
+
+% Chapter : Methodologies
+\include{chapters/ch02}
+
+% Chapter : Validation
+\include{chapters/ch03}
+
+% Chapter : optimisation bidisciplinaire
+\include{chapters/ch04}
+
+% Chapter : optimisation BEM
+\include{chapters/ch05}
+
+% Chapter : conclusion
+\include{chapters/concl}
+
+% \cleardoublepage
+\appendix
+\pagenumbering{alph}
+\include{chapters/appendix}
+
+\end{document}

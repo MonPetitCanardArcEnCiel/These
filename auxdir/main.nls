@@ -1,0 +1,19 @@
+
+\begin{thenomenclature} 
+\nomgroup{C}
+  \item [{GANIMEDE}]\begingroup Modeleur CAO\nomeqref {4.0}\nompageref{22}
+\nomgroup{S}
+  \item [{BEM}]\begingroup Méthode des \'Eléments Frontière (Boundary Element Method)\nomeqref {2.0}\nompageref{9}
+  \item [{CAO}]\begingroup Conception Assistée par Ordinateur\nomeqref {4.0}\nompageref{22}
+  \item [{CFD}]\begingroup Dynamique des fluides numérique (Computational Fluid Dynamics)\nomeqref {4.0}\nompageref{16}
+  \item [{EFIE}]\begingroup Formulation Intégrale en Champ \'Electrique (Electric Field Integral Equation)\nomeqref {2.0}\nompageref{9}
+  \item [{GFA}]\begingroup Géométrie de référence (Generic Fighter Aircraft)\nomeqref {4.0}\nompageref{16}
+  \item [{OP}]\begingroup Optique Physique\nomeqref {2.0}\nompageref{8}
+  \item [{PTD}]\begingroup Théorie Physique de la Diffraction (Physical Theory of Diffraction)\nomeqref {2.0}\nompageref{8}
+  \item [{RWG}]\begingroup Fonctions de base de Rao-Wilton-Glisson\nomeqref {2.0}\nompageref{9}
+  \item [{SER}]\begingroup Surface \'Equivalente RADAR\nomeqref {4.0}\nompageref{19}
+\nomgroup{V}
+  \item [{$\phi$}]\begingroup Angle de gisement.\nomeqref {2.0}\nompageref{8}
+  \item [{$\theta$}]\begingroup Angle de site.\nomeqref {2.0}\nompageref{8}
+
+\end{thenomenclature}

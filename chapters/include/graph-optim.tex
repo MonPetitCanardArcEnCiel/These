@@ -1,0 +1,83 @@
+\begin{tikzpicture}[node distance=\nd,scale=0.7,every node/.style={transform shape}]
+    \tikzstyle{startstop} = [rectangle,rounded corners, minimum width=.5\ndv, minimum height=.5\nd,text centered,draw=black,fill=red!30]
+
+    \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=.5\ndv,  minimum height=.5\nd,  text centered, draw=black, fill=blue!20,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
+
+    \tikzstyle{process} = [rectangle, minimum width=.5\ndv,  minimum height=.5\nd, text centered, draw=black, fill=orange!30,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
+
+    \tikzstyle{decision} = [diamond, minimum width=.5\ndv, minimum height=.5\nd,aspect=2,  text centered,   draw=black, fill=green!30,execute at begin node={\begin{varwidth}{\ndv}\centering},execute at end node={\end{varwidth}}]
+
+    \tikzstyle{dummy} = [rectangle,draw=none,fill=none,minimum height=.5\nd,minimum width=.5\ndv]
+
+    \tikzstyle{line} = [thick]
+
+    \tikzstyle{arrow} = [line,->,>=stealth]
+
+
+    \node (start) [startstop] {Start};
+    \node (init) [io,below of=start] {Initial state};
+    \node (optim) [process, below of=init] {Optimizer};
+    \node (cvg) [decision, below of=optim,yshift=-.5\nd]{convergence};
+    \node (DV) [io,below of=cvg,yshift=-.5\nd] {Design Variable};
+    \node (cad) [process,below of=DV] {CAD modeler};
+    \node (in2d) [io,left of=cad,xshift=-1.5\ndv]{Initial geometry\newline Initial 2D grids};
+    \coordinate [below of=cad,yshift=.5\nd] (aux0);
+
+    \node (POgrid) [io,below of=cad,xshift=.5\ndv] {PO 2D grid};
+    \node (COPOLA) [process,below of=POgrid,yshift=-2\nd] {COPOLA code};
+    \node (RCS) [io,below of=COPOLA,yshift=-.5\nd] {RCS};
+    \node (dRCS) [io,right of=RCS,xshift=.5\ndv] {%
+    RCS\newline gradient};
+
+    \node (CFDgrid) [io,below of=cad,xshift=-.5\ndv] {CFD 2D grid};
+    \node (3Ddef) [process,below of=CFDgrid] {elliptic operator};
+    \node (in3d) [io,left of=3Ddef,xshift=-\ndv] {Initial 3D mesh};
+    \node (Vmesh)[io,below of=3Ddef] {3D mesh};
+    \node (aether) [process,below of=Vmesh] {CFD code};
+    \node (aerovar) [io,below of=aether,yshift=-.5\nd] {\cd,\cl};
+
+    \node (aetherlin) [process,left of=aether,xshift=-.5\ndv] {CFD adjoint solver};
+    \node (aerograd) [io,below of=aetherlin,yshift=-.5\nd]{Aerodynamic gradient};
+
+    \node (costgather) [process,below of=cad,yshift=-6.5\nd] {Cost Gather};
+
+    \coordinate[above of=costgather] (aux);
+
+    \node (obs) [io,right of=optim,xshift=1\ndv] {Cost, constraints, gradients};
+
+    \node (end) [startstop,left of=cvg,xshift=-1.5\ndv] {Stop};
+
+    \draw[arrow] (start) -- (init);
+    \draw[arrow] (init) -- (optim);
+    \draw[arrow] (optim) -- (cvg);
+    \draw [arrow] (cvg) -- node[anchor=east] {no} (DV);
+    \draw[arrow] (DV) -- (cad);
+    \draw[line] (cad) -- (aux0);
+    \draw[arrow] (aux0) -| (POgrid);
+    \draw[arrow] (POgrid) -- (COPOLA);
+    \draw[arrow] (COPOLA) -- (RCS);
+    \draw[arrow] (COPOLA) -| (dRCS);
+
+    \draw[arrow] (in2d) -- (cad);
+    \draw[arrow] (in3d) -- (3Ddef);
+
+    \draw[arrow] (aux0) -| (CFDgrid);
+    \draw[arrow] (CFDgrid) -- (3Ddef);
+    \draw[arrow] (3Ddef) -- (Vmesh);
+    \draw[arrow] (Vmesh) -- (aether);
+    \draw[arrow] (aether) -- (aerovar);
+
+    \draw[arrow] (aether) -- (aetherlin);
+    \draw[arrow] (aetherlin) -- (aerograd);
+
+    \draw[line] (RCS) |- (aux) ;
+    \draw[line] (dRCS) |- ($(RCS)-(0,\nd)$) ;
+    \draw[line] (aerovar) |- (aux) ;
+    \draw[line] (aerograd) |- ($(aerovar)-(0,\nd)$) ;
+    \draw[arrow] (aux) -- (costgather);
+
+    \draw [arrow] (costgather) -- ++ (2.1\ndv,0) |- (obs);
+    \draw [arrow] (obs) -- (optim);
+
+    \draw [arrow] (cvg) -- node[anchor=south] {yes} (end);
+\end{tikzpicture}

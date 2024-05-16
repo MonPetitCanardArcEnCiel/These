@@ -1,0 +1,31 @@
+\setlength{\headheight}{28pt}
+\addtolength{\topmargin}{-16pt}
+
+% (L)eft, (R)ight, (O)dd page, (E)ven page
+\fancypagestyle{fancy}{
+    % \fancyhead{}
+    \fancyhead[LO,RE]{\hyperlink{chapter.\thechapter}{\leftmark}}
+    \fancyhead[RO,LE]{\hyperlink{section.\thesection}{\rightmark}}
+    \fancyfoot{}
+    % \fancyfoot[LO,CE]{Chapter \thechapter}
+    \fancyfoot[LE,RO]{\hyperlink{mytableofcontents}{\thepage}}
+    \fancyfoot[CO,CE]{\theauthor}
+
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+}
+
+
+\fancypagestyle{plain}{%
+    \fancyhf{}%
+    % \fancyfoot[C]{\thepage\ of \pageref{LastPage}}%
+    % \fancyfoot[LO,CE]{Chapter \thechapter}
+    \fancyfoot[LE,RO]{\hyperlink{mytableofcontents}{\thepage}}
+    \fancyfoot[CO,CE]{\theauthor}
+    \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
+    \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+}
+
+\pagestyle{fancy}
+
+% \hypersetup{pdftitle={\thetitle},pdfauthor={\theauthor}}

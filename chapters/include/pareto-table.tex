@@ -1,0 +1,34 @@
+\pgfplotstabletypeset[
+        columns={weights,CD,CL,fRCS,avg RCS,SREF,N cycle},
+        col sep=comma,
+        fixed,precision=1,
+        columns/weights/.style={column name={$w$},column type = >{\centering}m{\widthof{baseline}}|,string type},
+        columns/CD/.style={column name={\cd},column type={S[round-mode=places, round-precision=2, scientific-notation=engineering, table-format=4.2e+1, exponent-product = \cdot]},
+        string type},
+        columns/CL/.style={column name={\cl},column type={S[round-mode=places, round-precision=1, scientific-notation=engineering, table-format=4.1e+1, exponent-product = \cdot]},
+        string type},
+        columns/fRCS/.style={column name={$F_{RCS}$},column type={S[round-mode=places, round-precision=2, scientific-notation=engineering, table-format=5.2e+1, exponent-product = \cdot]},
+        string type},
+        columns/avg RCS/.style={column name={$\hat\sigma$},column type={S[round-mode=places, round-precision=1, scientific-notation=engineering, table-format=3.1e+1, exponent-product = \cdot]},
+        string type},
+        columns/SREF/.style={column name={\sref},numeric type},
+        columns/N cycle/.style={precision=0,numeric type},
+    ]
+    {tables/Paretto2.txt}
+\pgfplotstabletypeset[
+        columns={weights,CD,CL,fRCS,avg RCS,SREF,N cycle},
+        col sep=comma,
+        fixed,precision=1,
+        columns/weights/.style={column name={$w$},column type = >{\centering}m{\widthof{baseline}}|,string type},
+        columns/CD/.style={column name={\cd},column type={S[round-mode=places, round-precision=2, scientific-notation=engineering, table-format=4.2e+1, exponent-product = \cdot]},
+        string type},
+        columns/CL/.style={column name={\cl},column type={S[round-mode=places, round-precision=1, scientific-notation=engineering, table-format=4.1e+1, exponent-product = \cdot]},
+        string type},
+        columns/fRCS/.style={column name={$F_{RCS}$},column type={S[round-mode=places, round-precision=2, scientific-notation=engineering, table-format=5.2e+1, exponent-product = \cdot]},
+            string type},
+        columns/avg RCS/.style={column name={$\hat\sigma$},column type={>{\centering}S[round-mode=places, round-precision=1, scientific-notation=engineering, table-format=3.1e+1, exponent-product = \cdot]},
+        string type},
+        columns/SREF/.style={column name={\sref},numeric type},
+        columns/N cycle/.style={string type},
+    ]
+    {tables/baseline.txt}

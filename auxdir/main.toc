@@ -1,0 +1,52 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{Abstract}{i}{section*.1}%
+\contentsline {chapter}{\nameref {ch:dedicace}}{iii}{chapter*.3}%
+\contentsline {chapter}{\nameref {ch:thx}}{iv}{chapter*.4}%
+\contentsline {chapter}{Table des mati\`eres}{v}{section*.5}%
+\contentsline {chapter}{\nonumberline Nomenclature}{ix}{chapter*.9}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Méthodes d'optimsation}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Optimisation sans gradient}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Optimisation avec gradient}{3}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Optimisation multidisciplinaire Aéro-SER}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Adjoint BEM}{5}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Méthodologies pour l'\'Electromagnétisme}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Maxwell et l'équation d'onde}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}L'optique physique}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Formulation intégrale en champ électrique et méthode des éléments frontière}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Différentiation de la BEM}{9}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Validation des codes \'Electromagnétiques}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Validation de l'Optique Physique}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Validation de la BEM}{12}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Validation du gradient de l'Optique Physique}{13}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Validation de l'adjoint BEM}{14}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Optimisation Bidisciplinaire : Optique Physique et CFD}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Présentation du cas de référence}{16}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Géométrie}{17}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Analyse aérodynamique}{18}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Analyse SER}{19}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Présentation des outils d'optimisation}{20}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Présentation du processus d'optimsation}{21}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Présentation du modeleur CAO}{22}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Coûts et Contraintes}{23}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Résultats}{24}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Optimisation aérodynamique}{26}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Optimisation SER}{27}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Pareto-optimalité}{27}{subsection.4.4.3}%
+\contentsline {chapter}{\numberline {5}Optimisation BEM}{31}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Optimisation d'une sphère}{31}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Présentation du cas}{32}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Coût}{33}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Résultat}{34}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Optimisation d'un ellipsoïde}{35}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Présentation du cas}{36}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Coût}{36}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Résulat}{37}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Optimisation du GFA}{38}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Présentation du cas}{39}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Coûts et contraintes}{40}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Résultats}{41}{subsection.5.3.3}%
+\contentsline {chapter}{\numberline {6}Conclusion}{43}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Annexes}{a}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Rappels d'analyse vectorielle}{a}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Adjoint aérodynamique}{a}{section.A.2}%

@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+    \begin{axis}[
+        xlabel={\cd},
+        ylabel={$F_{RCS}$},
+        legend pos=north east,
+        legend entries = {Pareto front, baseline},
+    ]
+        \addplot[mark=o,point meta=explicit symbolic,nodes near  coords*] table [x=CD,y=fRCS,meta=weights,col sep=comma] {tables/Paretto2.txt};
+        \addplot[only marks,color=orange] table [x=CD,y=fRCS, meta=weights,col sep=comma] {tables/baseline.txt};
+    \end{axis}
+\end{tikzpicture}
