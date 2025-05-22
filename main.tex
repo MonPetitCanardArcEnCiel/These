@@ -67,7 +67,7 @@
 
 % Intro
 \pagenumbering{arabic}
-\include{chapters/intro}
+% \include{chapters/intro}
 
 % Chapter: Etat de l'art
 \include{chapters/chapter_1}
@@ -87,7 +87,10 @@
 % Chapter : conclusion
 \include{chapters/concl}
 
-% \cleardoublepage
+\printbibliography[heading=bibintoc]
+
+% \newpage
+\cleardoublepage
 \appendix
 \pagenumbering{alph}
 \include{chapters/appendix}

@@ -1,38 +1,13 @@
 \chapter{Annexes}
 
-\section{Rappels d'analyse vectorielle}
-Soit $A$ un vecteur. Rappelons ce résultat bien connu d'analyse vectorielle :
-\begin{equation*}
-    \helm A = \nabla(\nabla\cdot A)-\nabla^2A.
-\end{equation*}
+% Rappels d'analyse vectorielle
+\input{chapters/appendices/a01.tex}
 
-Soit $ \Gamma$ une surface gauche dans $\mathbb R^3$. Soit une fonction $v$ régulière définie au voisinage de $\Gamma$. On peut définir un gradient surfacique $\nabla_\Gamma$ de $v|_\Gamma$ comme la composante tangentielle à $\Gamma$ de $\nabla v$ :
-\begin{equation}
-    \left.\nabla_\Gamma v\right|_\Gamma = \n\times\left(\nabla v\times\n\right).
-    \label{eq:gradsurf}
-\end{equation}
+% Adjoint aero
+\input{chapters/appendices/a02.tex}
 
-\'Etant donné un champ de vecteur $\J$ régulier et tangent à $\Gamma$, on peut alors définir sa divergence sufacique $\nabla_\Gamma\cdot$ par dualité :
-\begin{equation}
-    \int_\Gamma\phi\nabla_\Gamma\cdot\J\dd\Gamma = - \int_\Gamma\J\cdot\nabla_\Gamma\phi\dd\Gamma
-    \label{eq:divsurf}
-\end{equation}
+% Stratton-Chu
+\input{chapters/appendices/a03.tex}
 
-Soient $u$, $v$ et $w$ trois vecteurs de $\mathbb R^3$. Le produit vectoriel n'est pas associatif, et :
-\begin{align}
-    u\times(v\times w) &= (u\cdot w)v - (u\cdot v)w\\
-    (u\times v)\times w &= (u\cdot w)v - (v\cdot w)u.
-\end{align}
-
-Cependant, si $w = u$, on a :
-\begin{equation}
-    u\times(v\times u) = (u\cdot u)v - (u\cdot v)u = (u\times v)\times u.
-\end{equation}
-
-En particulier, si $u\perp v$, alors :
-\begin{equation}
-    u\times v\times u = (u\cdot u)v - (v\cdot u)u = |u|^2 v
-    \label{eq:prodvec}
-\end{equation}
-
-\section{Adjoint aérodynamique}
+% Champ lointain
+\input{chapters/appendices/a04.tex}
