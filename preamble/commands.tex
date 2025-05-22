@@ -89,5 +89,27 @@
 % DBUG
 \newcommand{\revised}[1]{#1}
 
+% Environnements
+\newenvironment{resume}
+    {
+        \small
+        \begin{adjustwidth}{.2\textwidth}{0pt}
+            \hrulefill
+            \vspace{-2ex}
+            \paragraph{Résumé}
+    }
+    {
 
+        \noindent
+        \hrulefill
+        \end{adjustwidth}
+        \normalsize
+    }
 
+\newenvironment{article}
+    {
+        \newpage
+    }
+    {
+        \newpage
+    }
