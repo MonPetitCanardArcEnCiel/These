@@ -1,0 +1,8 @@
+% \section*{Résumé}
+\begin{resume}
+    Les avions de combat modernes doivent de plus en plus conjuguer performances aérodynamiques et faible observabilité.
+	Dans cet article, nous présentons une méthodologie d'optimisation bidisciplinaire de l'aéro-sécurité basée sur le gradient.
+	La forme de l'avion est paramétrée à l'aide d'un modeleur CAO, et nous optimisons avec l'algorithme SLSQP. La traînée, calculée à l'aide d'une méthode RANS, est utilisée comme critère aérodynamique.
+	Pour le critère de furtivité, une fonction est dérivée de la section transversale radar dans un cône de directions donné, pondérée par une fonction dont le but est d'annuler l'intensité électromagnétique dans une direction donnée.
+	La furtivité est obtenue passivement par la diffusion de l'énergie électromagnétique loin de l'antenne radar et aucune énergie n'est absorbée par l'aéronef, qui est considéré comme un conducteur parfait. Un front de Pareto est identifié en faisant varier les poids des critères aérodynamiques et de furtivité. Le front de Pareto permet d'identifier facilement le modèle CAO correspondant à un compromis aérodynamique et furtif choisi.
+\end{resume}
