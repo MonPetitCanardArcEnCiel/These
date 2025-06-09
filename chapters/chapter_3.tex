@@ -7,7 +7,13 @@
 \section*{Avant-propos}
 \label{sec:ch3-avantpropos}
 \addcontentsline{toc}{section}{\nameref{sec:ch3-avantpropos}}
-Ce chapitre s'articule autour de notre article publié dans \textit{Eng (MPDI)} intitulé \textit{A BEM adjoint-based differentiable shape optimization of a stealth aircraft.}
+Ce chapitre s'articule autour de notre article publié dans le journal \textit{Eng (MPDI)} intitulé \textit{A BEM adjoint-based differentiable shape optimization of a stealth aircraft.} L'objet de cet article est de présenter une formulation adjointe pour la résolution des équations de Maxwell par méthode des éléments finis de frontières (\textit{Boundary Element Method}, BEM) utilisable dans un processus d'optimisation par descente de gradient dans un cadre industriel. Nous démontrons la faisabilité du processus avec une optimisation monodisciplinaire à 13 paramètres, et comparons les résultats à une optimisation utilisant une méthode PO (voir \nameref{ch:chapter2}).
+
+Le critère de furtivité est une fonction de la SER. La SER est calculée en résolvant les équations de Maxwell par une méthode BEM implémentée dans le solveur SPECTRE développé par Dassault Aviation \citep{Poggio1970}. Ma principale contribution a consisté à implémenter la formulation adjointe (présentée en section \nameref{bem-sec:BEM}) et mettre en place le processus d'optimisation. J'ai utilisé l'outil de différenciation automatique TAPENADE \citep{Hascoet2013} pour différencier les  Dû à des contraintes de temps, l'un des termes de l'adjoint a dû être négligé et la première priorité de la suite de ce travail sera de le calculer et l'implémenter. Cependant, je montre que, au moins dans le cadre d'une optimisation monodisciplinaire, l'adjoint partiel permet une convergence satisfaisante de l'optimisation au vu du temps gagné par rapport à une optimisation au cours de laquelle le gradient est calculé par différences finies. Je montre également que le choix de restreindre le calcul BEM à une seule fréquence, choix fait encore une fois à cause de contraintes de temps, est très défavorable à la convergence de l'optimisation. Pour une prochaine étude, un cas multifréquence, comme lors du chapitre \nameref{ch:chapter2}, devrait être adopté.
+
+Comme dans le chapitre \nameref{ch:chapter2}, le modeleur GANIMEDE \citep{Kleinveld2008} est utilisé pour piloter la géométrie et déformer le maillage surfacique, et nous imposons que la surface de référence de la voilure reste constante afin d'assurer d'obtenir une forme réaliste. Nous utilisons une nouvelle fois l'algorithme SLSQP. Le processus d'optimisation est schématisé sur la figure \ref{bem-fig:optim-process}.
+
+
 
 \begin{article}
     \subimport{chapter_3}{corpus.tex}
@@ -16,3 +22,13 @@ Ce chapitre s'articule autour de notre article publié dans \textit{Eng (MPDI)} 
 \section*{Conclusion du chapitre}
 \label{sec:ch3-conclgen}
 \addcontentsline{toc}{section}{\nameref{sec:ch3-conclgen}}
+
+Ce chapitre présentait une formulation adjointe pour la BEM dans le but de réaliser une optimisation de forme d'avion furtif à haute fidélité et par descente de gradient. Le calcul du gradient par la formulation adjointe a été validée contre des différences finies pour différents paramètres de forme.
+
+Afin de démontrer l'intérêt de cette formulation, nous avons réalisé une optimisation monodisciplinaire à 13 variables, sur la même forme que le chapitre \nameref{ch:chapter2}, mais à fréquence plus réduite afin de garder des coups de calculs compatibles avec des contraintes industrielles. Avec ce nombre de variables, le temps de calcul du gradient était significativement réduit comparé à une méthode par différences finies.
+
+Dû à des contraintes temporelles, nous avons dû négliger un terme de l'adjoint. Nous montrons cependant que cela n'empêche la convergence de l'optimisation, et qu'étant donné le gain de temps par rapport aux différences  finies, cela peut être un compromis acceptable.
+
+La comparaison avec l'optimisation OP semble indiquer que des phénomènes importants jouant une rôle dans la furtivité de la forme ne sont pas capturés par la méthode asymptotique. Cela justifie la nécessité de disposer d'une formulation efficace pour effectuer une optimisation haute fidélité. L'objectif à long terme serait une optimisation à multi-fidélité où une optimisation par OP serait utiliser pour obtenir une première forme rudimentaire, qui serait ensuite affiner à l'aide d'une optimisation par BEM.
+
+La comparaison avec l'optimisation OP semble aussi indiquer que le choix qui a été fait de se restreindre à un cas monofréquence, par opposition au chapitre \ref{ch:chapter2} ou la SER était moyennée sur une bande de fréquences, était préjudiciable. Étant donné que le coût de calcul de la BEM et de son adjoint est proportionnel au nombre de fréquence, un cas multifréquence n'était pas envisageable à ce stade. Il faudra adapter la formulation avec des méthodes d'accélérations telles que ACA ou H-matrix ou utiliser une méthode \textit{fast multipole}.
