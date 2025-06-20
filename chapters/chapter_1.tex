@@ -1,3 +1,4 @@
+\begin{refsection}
 \chapter{Introduction et état de l'art.}
 \chaptermark{Introduction.}
 
@@ -38,3 +39,6 @@ L'utilisation de l'optimisation basée sur la CAO offre de nombreux avantages da
 
 
 Gradient-based optimization methods have been widely recognized for their efficiency in reducing the number of function evaluations compared to gradient-free methods. This is particularly evident when dealing with complex problems that involve a high dimension of optimization parameters. For instance, Lyu et al.~\citep{Lyu2014} benchmarked various optimization algorithms, both gradient-free and gradient-based, on three different problems with increasing complexity. They demonstrated that while gradient-free methods tend to require more function evaluations as the number of optimization parameters increases, gradient-based methods maintain a linear behavior. This becomes increasingly significant when the design space has more than ten dimensions. In such cases, gradient-free algorithms may need tens or hundreds of thousands of function evaluations, whereas gradient-based algorithms using an analytic method like the adjoint formulation to compute the gradient require less than a hundred.
+
+\printbibliography[heading=subbibintoc]
+\end{refsection}

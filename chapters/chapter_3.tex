@@ -1,4 +1,5 @@
 % Optimisation BEM
+\begin{refsection}
 \chapter{Optimisation par descente de gradient d'une forme d'avion avec une méthode BEM.}
 \chaptermark{Optim BEM}
 
@@ -32,3 +33,6 @@ Dû à des contraintes temporelles, nous avons dû négliger un terme de l'adjoi
 La comparaison avec l'optimisation OP semble indiquer que des phénomènes importants jouant une rôle dans la furtivité de la forme ne sont pas capturés par la méthode asymptotique. Cela justifie la nécessité de disposer d'une formulation efficace pour effectuer une optimisation haute fidélité. L'objectif à long terme serait une optimisation à multi-fidélité où une optimisation par OP serait utiliser pour obtenir une première forme rudimentaire, qui serait ensuite affiner à l'aide d'une optimisation par BEM.
 
 La comparaison avec l'optimisation OP semble aussi indiquer que le choix qui a été fait de se restreindre à un cas monofréquence, par opposition au chapitre \ref{ch:chapter2} ou la SER était moyennée sur une bande de fréquences, était préjudiciable. Étant donné que le coût de calcul de la BEM et de son adjoint est proportionnel au nombre de fréquence, un cas multifréquence n'était pas envisageable à ce stade. Il faudra adapter la formulation avec des méthodes d'accélérations telles que ACA ou H-matrix ou utiliser une méthode \textit{fast multipole}.
+
+\printbibliography[heading=subbibintoc]
+\end{refsection}
