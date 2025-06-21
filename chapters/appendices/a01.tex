@@ -1,5 +1,19 @@
 
 \chapter{Rappels d'analyse vectorielle}
+\section*{Rappels d'analyse vectorielle}
+Soient un vecteur $P$ et un réel $\lambda$. Rappelons que 
+\begin{equation}
+\label{eq:div_scal}
+\nabla\cdot(\lambda P) = P\cdot\nabla\lambda\ + \lambda\nabla\cdot P.
+\end{equation}
+
+
+Rappelons aussi la relation bien connue :
+\begin{equation}
+\label{eq:vect_id}
+\nabla\times\nabla\times P = \nabla\left(\nabla\cdot P\right)-\nabla^2P.
+\end{equation}
+
 Soit $A$ un vecteur. Rappelons ce résultat bien connu d'analyse vectorielle :
 \begin{equation*}
     \helm A = \nabla(\nabla\cdot A)-\nabla^2A.
@@ -11,7 +25,7 @@ Soit $ \Gamma$ une surface gauche dans $\mathbb R^3$. Soit une fonction $v$ rég
     \label{eq:gradsurf}
 \end{equation}
 
-\'Etant donné un champ de vecteur $\J$ régulier et tangent à $\Gamma$, on peut alors définir sa divergence sufacique $\nabla_\Gamma\cdot$ par dualité :
+\'Etant donné un champ de vecteur $\J$ régulier et tangent à $\Gamma$, on peut alors définir sa divergence surfacique $\nabla_\Gamma\cdot$ par dualité :
 \begin{equation}
     \int_\Gamma\phi\nabla_\Gamma\cdot\J\dd\Gamma = - \int_\Gamma\J\cdot\nabla_\Gamma\phi\dd\Gamma
     \label{eq:divsurf}
