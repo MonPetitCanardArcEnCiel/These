@@ -11,13 +11,14 @@ Soient un vecteur $P$ et un réel $\lambda$. Rappelons que
 Rappelons aussi la relation bien connue :
 \begin{equation}
 \label{eq:vect_id}
-\nabla\times\nabla\times P = \nabla\left(\nabla\cdot P\right)-\nabla^2P.
+\helm P = \nabla\left(\nabla\cdot P\right)-\nabla^2P.
 \end{equation}
 
-Soit $A$ un vecteur. Rappelons ce résultat bien connu d'analyse vectorielle :
-\begin{equation*}
-    \helm A = \nabla(\nabla\cdot A)-\nabla^2A.
-\end{equation*}
+\'Etant donné un vecteur unitaire $n$ normal au vecteur $P$, on remarque que :
+\begin{equation}
+	\label{eq:vect_normale}
+	n\times P\times n = P.
+\end{equation}
 
 Soit $ \Gamma$ une surface gauche dans $\mathbb R^3$. Soit une fonction $v$ régulière définie au voisinage de $\Gamma$. On peut définir un gradient surfacique $\nabla_\Gamma$ de $v|_\Gamma$ comme la composante tangentielle à $\Gamma$ de $\nabla v$ :
 \begin{equation}
