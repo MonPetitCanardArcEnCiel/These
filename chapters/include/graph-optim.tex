@@ -33,11 +33,11 @@
     \node (3Ddef) [process,below of=CFDgrid] {elliptic operator};
     \node (in3d) [io,left of=3Ddef,xshift=-\ndv] {Initial 3D mesh};
     \node (Vmesh)[io,below of=3Ddef] {3D mesh};
-    \node (aether) [process,below of=Vmesh] {CFD code};
-    \node (aerovar) [io,below of=aether,yshift=-.5\nd] {\cd,\cl};
+    \node (AeTHER) [process,below of=Vmesh] {CFD code};
+    \node (aerovar) [io,below of=AeTHER,yshift=-.5\nd] {\cd,\cl};
 
-    \node (aetherlin) [process,left of=aether,xshift=-.5\ndv] {CFD adjoint solver};
-    \node (aerograd) [io,below of=aetherlin,yshift=-.5\nd]{Aerodynamic gradient};
+    \node (AeTHERlin) [process,left of=AeTHER,xshift=-.5\ndv] {CFD adjoint solver};
+    \node (aerograd) [io,below of=AeTHERlin,yshift=-.5\nd]{Aerodynamic gradient};
 
     \node (costgather) [process,below of=cad,yshift=-6.5\nd] {Cost Gather};
 
@@ -64,11 +64,11 @@
     \draw[arrow] (aux0) -| (CFDgrid);
     \draw[arrow] (CFDgrid) -- (3Ddef);
     \draw[arrow] (3Ddef) -- (Vmesh);
-    \draw[arrow] (Vmesh) -- (aether);
-    \draw[arrow] (aether) -- (aerovar);
+    \draw[arrow] (Vmesh) -- (AeTHER);
+    \draw[arrow] (AeTHER) -- (aerovar);
 
-    \draw[arrow] (aether) -- (aetherlin);
-    \draw[arrow] (aetherlin) -- (aerograd);
+    \draw[arrow] (AeTHER) -- (AeTHERlin);
+    \draw[arrow] (AeTHERlin) -- (aerograd);
 
     \draw[line] (RCS) |- (aux) ;
     \draw[line] (dRCS) |- ($(RCS)-(0,\nd)$) ;
