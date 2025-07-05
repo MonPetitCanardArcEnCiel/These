@@ -1,8 +1,8 @@
 [submodule "chapters/chapter_2"]
 	path = chapters/chapter_2
-	url = git@github.com:MonPetitCanardArcEnCiel/Article_Bidis.git
+	url = shh://git@github.com:MonPetitCanardArcEnCiel/Article_Bidis.git
 	branch = mdpi
 [submodule "chapters/chapter_3"]
 	path = chapters/chapter_3
-	url = git@github.com:MonPetitCanardArcEnCiel/Article_BEM.git
+	url = shh://git@github.com:MonPetitCanardArcEnCiel/Article_BEM.git
 	branch = mdpi
