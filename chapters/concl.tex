@@ -1,4 +1,5 @@
 \chapter*{Conclusion et perspectives}
+\chaptermark{Conclusion}
 \label{ch:concl}
 \addcontentsline{toc}{chapter}{\nameref{ch:concl}}
 \phantomsection
@@ -38,6 +39,34 @@ En conclusion, les contributions de ce travail sont multiples. D'une part, il pr
 
 
 \section{Perspectives}
-% Les perspectives de ce travail sont nombreuses. Il serait intéressant d'étendre la méthodologie à d'autres disciplines, telles que l'acoustique ou la thermique, afin de proposer une optimisation véritablement pluridisciplinaire. Par ailleurs, l'intégration de modèles de plus haute fidélité, ou l'utilisation de techniques d'apprentissage automatique pour accélérer certaines étapes du processus, constituent des pistes de recherche prometteuses. Enfin, l'application de cette démarche à des cas industriels réels, en collaboration avec des partenaires du secteur, permettrait de valider pleinement son potentiel et d'enrichir encore les outils et méthodes proposés.
+
 Ainsi, ce travail pose les bases d'une nouvelle génération d'outils d'optimisation pour la conception d'avions, capables de répondre aux enjeux croissants de performance, de furtivité et d'innovation, dans un contexte industriel en constante évolution.
 
+\paragraph{}
+La priorité dans la suite de ce travail sera de finaliser la formulation adjointe pour la BEM 3D, présentée en chapitre \ref{ch:chapter3}, en intégrant les termes manquants, puis en adaptant la formulation et l'implémentation pour traiter des cas multifréquences afin d'améliorer la robustesse de l'optimisation tout en tenant compte des contraintes de temps de calcul et en stockage mémoire. Pour cela, une méthode de compression de matrice de type ACA \citep{Bebendorf2000} ou une méthode d'accélération de type FMM \citep{Greengard1988} pourrait être envisagées.
+
+Ensuite, la formulation adjointe développée sera utilisée dans une optimisation de forme complète, en intégrant les contraintes géométriques et les objectifs aéro-furtivité développées au chapitre \ref{ch:chapter2}. Cette étape permettra de valider pleinement la méthodologie proposée et de mesurer pleinement l'apport de l'utilisation d'une méthode à haute fidélité par rapport à la méthode approchée qu'est l'optique physique.
+
+L'intérêt de ce framework se fera pleinement sortir lorsqu'il sera appliqué à des géométries plus complexes et réalistes d'avions, notamment en intégrant des entrées d'air, qui présentent un rayonnement de cavité \citep{Anastassiu2004} qui n'est pas pris en compte dans la méthode optique physique, tout en étant un aspect très dimensionnant dans la conception de formes furtives.
+
+\paragraph{}
+ % perspective sur l'optimisation aero stealth
+Le framework présenté au chapitre \ref{ch:chapter2} est très simplifié. Premièrerement la géométrie ne présente pas de d'empenage, ce qui a un impact au niveau de l'aérodynamique comme de la furtivité, et cela offrirait encore plus de paramètres d'optimisation. L'intégration des entrées d'air, avec un modèle thermodynamique pour modéliser les conditions moteurs serait également très intéressant, car cela permettrait d'intégrer l'optimisation de la forme des entéres d'air dans le compromis aéro-stealth. 
+
+De plus, comme il a été discuté, les contraintes aérodynamiques sont trop simplistes. Des contraintes de performances aérodynamiques plus réalistes intégrant la stabilité (contraintes sur le coefficient de moment en tangage ($\mathrm C_{m_y}$)), ou la manoeuvrabilité (contraintes sur le coefficient de moment en roulis ($\mathrm C_{m_x}$)) ou encore sur la répartition de portance en envergure pour intégrer des considération d'aérostructure, ont été envisagées mais pas implémentées dans le cadre de ce travail. Des contraintes de fabrication (par exemple le volume intérieur de la voilure, ou le moment à l'emplanture de la voilure) pourraient également être discutées avec les experts concepteurs.
+
+Pour améliorer le framework et le rendre plus représentatif d'un processus de conception industriel, il serait égalemennt intéressant d'optimiser l'aérodynamique sur différents points de vol représentatifs de la mission de l'avion. François Gallard a montré qu'il n'est possible d'optimiser que sur un nombre maximal de points de vol sans dégrader les performances des autres points de vol \citep{Gallard2014}. L'intégration de son algorithme GSA serait donc pertinent pour une conception de forme réaliste.
+
+Enfin, la prise en compte des surfaces de contrôle, telles que les volets ou les ailerons, dans le cadre de l'optimisation de la forme, serait très intéressante car cela permettrait d'explorer des compromis entre manoeuvrabilité et furtivité, en tenant compte des effets de ces surfaces sur la SER et les performances aérodynamiques. Cela permettrait également d'explorer plusieurs type de formes en plan telles que la forme canard, l'utilisation d'un empenage en V.
+
+Pour finir, l'utilisation de méthodes plus avancées pour l'exploration du front de Pareto, telle que celle proposée par \cite{Desideri2012} est un objectif à long terme, car l'exploration naïve telle que présentée dans le chapitre \ref{ch:chapter2} atteindra vite ses limites lorsque la complexité de a fonction objectif et la dimension du problème augmenteront.
+
+\paragraph{}
+En raison du coût nettement plus élevé de l'optimisation par BEM, il serait pertinent d'explorer des approches hybrides combinant des modèles de différentes fidélités. Une stratégie envisageable consisterait à réaliser d'abord une optimisation à l'aide d'un modèle approché, tel que la PTD, afin d'obtenir une première forme optimale, qui servirait ensuite de point de départ à une optimisation BEM plus précise. Cette démarche permettrait d'accélérer la convergence et de limiter le nombre d'itérations nécessaires avec le modèle haute fidélité. Par ailleurs, les travaux de Jakobus et Landstorfer, qui ont développé des approches hybrides combinant BEM et méthodes d'optique physique~\cite{Jakobus2002, Jakobus2002a}, ouvrent des perspectives intéressantes pour concevoir des cadres d'optimisation de la SER à la fois efficaces et économes en ressources de calcul.
+
+Une piste prometteuse pour accélérer l'optimisation aérodynamique consiste à recourir à des méthodes multi-fidélité, qui combinent des modèles de différentes précisions et coûts de calcul. Par exemple, l'utilisation conjointe de simulations RANS à faible résolution et de modèles plus précis (RANS haute fidélité ou DES) permet d'explorer rapidement l'espace de conception tout en réservant les évaluations coûteuses aux configurations les plus prometteuses. Des stratégies d'apprentissage adaptatif, telles que l'optimisation bayésienne multi-fidélité ou les modèles de krigeage co-krigeage, ont récemment montré leur efficacité pour réduire le nombre total de simulations nécessaires tout en maintenant la qualité des solutions obtenues~\citep{Perdikaris2017,Peherstorfer2018}.
+
+\paragraph{}
+Finalement, il serait intéressant d'étendre la méthodologie à d'autres disciplines, telles que l'acoustique ou la structure, afin de proposer une optimisation véritablement pluridisciplinaire. Par ailleurs, l'intégration de modèles de plus haute fidélité, ou l'utilisation de techniques d'apprentissage automatique pour accélérer certaines étapes du processus, par exemple pour enrichir les modèles de turbulence (voir par exemple \cite{Zhao2020,Beck2021}), constituent des pistes de recherche prometteuses. Enfin, l'application de cette démarche à des cas industriels réels, en collaboration avec des partenaires du secteur, ou lors de projets Européens, permettrait de valider pleinement son potentiel et d'enrichir encore les outils et méthodes proposés.
+
+\printbibliography[heading=subbibintoc]
