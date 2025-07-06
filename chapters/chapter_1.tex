@@ -3,6 +3,8 @@
 \chaptermark{Introduction.}
 
 \section{Contexte et motivations.}
+    \label{sec:intro}
+    \subsection{Enjeux de la conception d'avions}
     \label{sec:enjeux}
 
     Dans le cas d'avions de combat, l'aérodynamique et l'électromagnétisme sont deux points clés de sa conception, assurant son efficacité et surtout sa survivabilité. Les enjeux aérodynamiques sont de réduire la traînée de l'avion, afin de maximiser son rayon d'action, mais aussi de garantir sa man\oe uvrabilité afin d'assurer sa supériorité lors de combats aériens. Les enjeux de l'électromagnétisme sont d'assurer sa furtivité, c'est à dire réduire au maximum sa détectabilité RADAR. Cela permet non-seulement de faire en sorte que l'avion soit détectable le plus tard possible lors d'une mission, mais aussi d'empêcher les systèmes de visée d'accrocher l'avion.
@@ -34,7 +36,7 @@
     Dans la suite de cette partie, je vais présenter en détail les enjeux spécifiques à chacune des deux disciplines.
 
     
-    \subsection{\'Electromagnétisme}
+    \subsubsection{\'Electromagnétisme}
     
         \begin{table}[htb]
         \centering
@@ -109,7 +111,7 @@
         \label{fig:illus-SER}
     \end{figure}
     
-    \subsection{Aérodynamique}
+    \subsubsection{Aérodynamique}
     
     \paragraph{}
 
@@ -148,25 +150,34 @@
     \paragraph{}
     
     Bien que la MDAO (\textit{MultiDisciplinary Analysis and Optimization}) dans un cadre industriel soit le sujet de nombreux projets et d'études, la conception de forme aérodynamique et la conception de forme électromagnétique restent souvent réalisées en boucle ouverte. C'est-à-dire que les deux optimisations se font de manière indépendante, en prenant en compte les exigences de l'autre domaine en tant que contraintes d'optimisation. Des compromis sont ensuite trouvés entre les designs obtenus par chaque boucle d'optimisation. Certains auteurs \citep{Zhou2020} ont entrepris d'intégrer les deux aspects dans une même boucle de design préliminaire.
-			
+
+    \subsection{Méthode des \'Elements Frontières}
+    
+    Une méthode à onde complète résout numériquement les équations de Maxwell, sans aucune hypothèse physique préalable.  
+    La méthode des éléments de frontière (BEM), parfois appelée méthode des moments (MoM), est l'une des trois principales méthodes à onde complète, avec la méthode des éléments finis (FEM) et la  méthode des différences finies dans le domaine temporel (FDTD). Les techniques à onde complète peuvent être très précises et reposent sur la discrétisation d'une quantité inconnue. Dans le cas de la BEM, la distribution du courant, généralement la distribution du courant de surface, est discrétisée en segments ou en patchs, dont les interactions entre eux sont représentées par une matrice, calculée à l'aide de la fonction de Green du problème. Cela permet de ne discrétiser que la surface plutôt que l'ensemble du domaine volumique, mais au prix d'une matrice alors très dense. Avec les conditions aux limites pertinentes appliquées aux interactions, cela donne un ensemble d'équations linéaires dont la solution est le courant sur chaque segment ou patch. De plus, la condition de rayonnement est intégrée dans la méthode BEM, ce qui signifie qu'elle décrit avec précision le champ lointain et qu'aucun traitement spécial n'est nécessaire pour gérer un domaine non borné, ce qui la rend idéale pour les problèmes de diffusion tels que celui de cette étude. Ce n'est pas le cas pour la FEM ou la FDTD.
+    
+    Cependant, la méthode BEM ne traite pas efficacement les matériaux qui ne sont pas des conducteurs électriques parfaits (PEC), en particulier s'ils ne sont pas homogènes, par rapport aux méthodes FDTD ou FEM, bien que cela puisse être contourné en appliquant une pénalité locale sur l'impédance du matériau. Dans le cas d'un matériau non homogène, un maillage volumique est nécessaire, ce qui nuit considérablement à l'efficacité de la méthode. Cette limitation n'est pas très importante, car les matériaux non électriquement parfaits dépassent le cadre de cette étude.
+    
+    Naturellement, la précision de la méthode dépend fortement de la finesse de la discrétisation. En général, pour la méthode BEM, on utilise une taille de pas d'environ $\lambda/10$ à $\lambda/5$, où $\lambda$ est la longueur d'onde. Cela signifie que la méthode BEM s'adapte mal à l'augmentation des fréquences, avec un $\mathcal{O}\left(f^6\right)$ ($\mathcal{O}\left(f^9\right)$ dans le cas d'un maillage volumique)\citep{Davidson2010} ! Cela limite considérablement la gamme de fréquences calculables avec cette méthode, en particulier dans un cadre d'optimisation.
+    
+    Pour une discussion plus approfondie sur les différentes méthodes à onde complète, leurs limites et leurs comparaisons entre elles, veuillez vous référer à \cite{Davidson2010}.
+    
+
+Pour pallier le coût computationnel élevé de la BEM, notamment dû à la manipulation de matrices denses de grande taille, plusieurs méthodes d'accélération ont été développées. Parmi les plus efficaces, la méthode de compression adaptative croisée (ACA) permet d'approximer les blocs de la matrice d'interaction par des matrices de faible rang, réduisant ainsi significativement la mémoire nécessaire et le temps de calcul, sans perte notable de précision~\citep{Bebendorf2000}. Une autre approche majeure est la Fast Multipole Method (FMM), qui accélère le calcul des interactions lointaines en regroupant les sources et en utilisant des développements multipolaires, ce qui permet de ramener la complexité du calcul matriciel de $\mathcal{O}(N^2)$ à $\mathcal{O}(N)$ \citep{Greengard1988}. Ces techniques sont aujourd'hui incontournables pour rendre la BEM applicable à des problèmes de grande taille en électromagnétisme ou en acoustique.
+
 
 
 \section{\'Etat de l'art}
-\subsection{Méthode des \'Elements Frontières}
-
- Une méthode à onde complète résout numériquement les équations de Maxwell, sans aucune hypothèse physique préalable.  
-La méthode des éléments de frontière (BEM), parfois appelée méthode des moments (MoM), est l'une des trois principales méthodes à onde complète, avec la méthode des éléments finis (FEM) et la  méthode des différences finies dans le domaine temporel (FDTD). Les techniques à onde complète peuvent être très précises et reposent sur la discrétisation d'une quantité inconnue. Dans le cas de la BEM, la distribution du courant, généralement la distribution du courant de surface, est discrétisée en segments ou en patchs, dont les interactions entre eux sont représentées par une matrice, calculée à l'aide de la fonction de Green du problème. Cela permet de ne discrétiser que la surface plutôt que l'ensemble du domaine volumique, mais au prix d'une matrice alors très dense. Avec les conditions aux limites pertinentes appliquées aux interactions, cela donne un ensemble d'équations linéaires dont la solution est le courant sur chaque segment ou patch. De plus, la condition de rayonnement est intégrée dans la méthode BEM, ce qui signifie qu'elle décrit avec précision le champ lointain et qu'aucun traitement spécial n'est nécessaire pour gérer un domaine non borné, ce qui la rend idéale pour les problèmes de diffusion tels que celui de cette étude. Ce n'est pas le cas pour la FEM ou la FDTD.
-
-Cependant, la méthode BEM ne traite pas efficacement les matériaux qui ne sont pas des conducteurs électriques parfaits (PEC), en particulier s'ils ne sont pas homogènes, par rapport aux méthodes FDTD ou FEM, bien que cela puisse être contourné en appliquant une pénalité locale sur l'impédance du matériau. Dans le cas d'un matériau non homogène, un maillage volumique est nécessaire, ce qui nuit considérablement à l'efficacité de la méthode. Cette limitation n'est pas très importante, car les matériaux non électriquement parfaits dépassent le cadre de cette étude.
-
-Naturellement, la précision de la méthode dépend fortement de la finesse de la discrétisation. En général, pour la méthode BEM, on utilise une taille de pas d'environ $\lambda/10$ à $\lambda/5$, où $\lambda$ est la longueur d'onde. Cela signifie que la méthode BEM s'adapte mal à l'augmentation des fréquences, avec un $\mathcal{O}\left(f^6\right)$ ($\mathcal{O}\left(f^9\right)$ dans le cas d'un maillage volumique)\citep{Davidson2010} ! Cela limite considérablement la gamme de fréquences calculables avec cette méthode, en particulier dans un cadre d'optimisation.
-
-Pour une discussion plus approfondie sur les différentes méthodes à onde complète, leurs limites et leurs comparaisons entre elles, veuillez vous référer à \cite{Davidson2010}.
-
-\todo{Ajouter une discussion sur les méthodes d'accélérations de la BEM, telles que les méthodes de compression ACA \citep{Bebendorf2000} ou les méthodes de type FMM \citep{Greengard1988}, ou encore les méthodes de type Fast Multipole Method (FMM).}
-
 \subsection{Optimisation}
 \subsubsection{Optimisation sans gradient}
+
+Les algorithmes d'optimisation sans gradient sont largement utilisés lorsque le calcul du gradient est impossible, trop coûteux ou imprécis, comme c'est souvent le cas pour les problèmes impliquant des simulations complexes ou du bruit numérique. Parmi ces méthodes, les algorithmes à surrogate modèle (ou modèles de substitution, voir par exemple \cite{Queipo2005,Forrester2008,Forrester2007,Jin2011}) construisent une approximation de la fonction objectif à partir d'un nombre limité d'évaluations, puis optimisent ce modèle pour proposer de nouveaux points d'échantillonnage. Les techniques courantes incluent le krigeage (Gaussian Process, voir \cite{Santner2003,Krige1951,Jones1998}), les réseaux de neurones ou les forêts aléatoires. Ces approches sont efficaces pour des problèmes de faible à moyenne dimension, mais leur coût explose rapidement avec le nombre de variables, rendant leur application difficile en grande dimension.
+
+Les algorithmes évolutionnaires, tels que les algorithmes génétiques (GA), Differential Evolution (DE) ou Particle Swarm Optimization (PSO), sont également populaires pour l'optimisation globale sans gradient. Ils sont robustes face aux minima locaux et ne nécessitent aucune information de dérivée, mais souffrent d'une convergence lente et d'un besoin important en évaluations de la fonction objectif, ce qui limite leur usage pour des problèmes coûteux ou de grande dimension.
+
+COBYLA (Constrained Optimization BY Linear Approximations) \citep{Powell1994} est un algorithme sans gradient qui gère les contraintes non linéaires en construisant des approximations linéaires locales de la fonction objectif et des contraintes. Il est efficace pour des problèmes de petite à moyenne dimension, mais sa performance se dégrade rapidement lorsque le nombre de variables augmente, et il peut avoir du mal à satisfaire précisément les contraintes complexes. COBYQA (Constrained Optimization BY Quadratic Approximations) \citep{Ragonneau2022,Ragonneau2024} est une extension qui utilise des modèles quadratiques pour améliorer la précision, mais elle reste limitée par la dimension du problème et la qualité de l'approximation locale.
+
+Cependant, si les méthodes sans gradient sont précieuses pour des problèmes de faible dimension ou lorsque le gradient est indisponible, elles deviennent rapidement inefficaces en grande dimension, notamment à cause de la malédiction de la dimensionnalité et de la difficulté à satisfaire des contraintes complexes. Les algorithmes surrogate-based sont quant à eux connus pour avoir des difficultés à gérer les contraintes, les satisfaisant avec une faible précision et peinant à respecter les critères d'arrêt \citep{Parr2010}. Pour les problèmes industriels à grand nombre de variables et à fortes contraintes, les méthodes basées sur le gradient restent généralement préférées.
 
 \subsubsection{Optimisation par gradient}
 
@@ -180,7 +191,7 @@ Cependant, il est bien connu que les algorithmes basés sur les gradients ont un
 
 Les méthodes d'optimisation par descente de gradient constituent la classe d'algorithmes la plus utilisée pour la résolution de problèmes d'optimisation non linéaire, en particulier lorsque le nombre de variables de conception est élevé et que le calcul du gradient est possible, soit analytiquement, soit numériquement. Ces méthodes reposent sur l'utilisation de l'information de gradient pour guider la recherche du minimum, ce qui leur confère une efficacité supérieure aux méthodes sans gradient, notamment en termes de nombre d'évaluations de la fonction objectif.
 
-Parmi les algorithmes les plus répandus, on distingue les méthodes de type quasi-Newton, qui construisent une approximation de la matrice Hessienne (matrice des dérivées secondes) pour accélérer la convergence. L'algorithme L-BFGS-B (Limited-memory Broyden–Fletcher–Goldfarb–Shanno with Bounds)~\citep{Byrd1995,Zhu1995} est une variante particulièrement adaptée aux problèmes de grande dimension, car il ne stocke qu'une approximation réduite de la Hessienne, ce qui limite la consommation mémoire. L-BFGS-B gère également les contraintes de bornes sur les variables, ce qui le rend pertinent pour de nombreux problèmes d'ingénierie où les paramètres sont physiquement limités. Il est largement utilisé dans l'optimisation de formes, l'apprentissage automatique et la mécanique numérique.
+Parmi les algorithmes les plus répandus, on distingue les méthodes de type quasi-Newton, qui construisent une approximation de la matrice Hessienne (matrice des dérivées secondes) pour accélérer la convergence. L'algorithme L-BFGS-B (Limited-memory Broyden-Fletcher-Goldfarb-Shanno with Bounds)~\citep{Byrd1995,Zhu1995} est une variante particulièrement adaptée aux problèmes de grande dimension, car il ne stocke qu'une approximation réduite de la Hessienne, ce qui limite la consommation mémoire. L-BFGS-B gère également les contraintes de bornes sur les variables, ce qui le rend pertinent pour de nombreux problèmes d'ingénierie où les paramètres sont physiquement limités. Il est largement utilisé dans l'optimisation de formes, l'apprentissage automatique et la mécanique numérique.
 
 L'algorithme SLSQP (Sequential Least Squares Quadratic Programming)~\citep{Kraft1988} est une méthode de programmation quadratique séquentielle qui résout à chaque itération un problème quadratique approché du problème original, en tenant compte à la fois des contraintes d'égalité et d'inégalité. SLSQP est particulièrement apprécié pour sa capacité à gérer des contraintes non linéaires complexes et à fournir des solutions précises même en présence de nombreuses contraintes. Il est implémenté dans de nombreux solveurs d'optimisation (par exemple, dans SciPy ou NLopt) et s'avère robuste pour des applications industrielles, notamment en conception de formes et en optimisation multi-physique.
 
@@ -208,7 +219,7 @@ Certaines études, telles que \citep{Aliaga2022}, traitent des effets contradict
 
 Par exemple, Garnier et al.~\citep{Garnier2020} ont utilisé un algorithme basé sur le couplage de l'algorithme génétique NSGA-II et d'une approche d'optimisation globale efficace multi-objectifs~\citep{Guerra2016} pour optimiser la forme d'un drone de combat sans pilote (UCAV) en termes d'aérodynamique furtive. D'autres auteurs, comme Liu et al.~\citep{Liu2021}, ont eu recours à des modèles de krigeage hiérarchique et à des modèles de substitution pour accélérer l'optimisation de la furtivité aérodynamique d'un avion à aile volante. Zhou et Huang~\citep{Zhou2023} ont proposé un algorithme de recherche à deux particules pour optimiser la furtivité d'une queue verticale, tandis que Taj et al.~\citep{Taj2023} ont combiné régression par processus gaussien et algorithmes génétiques pour explorer le compromis entre traînée et SER sur un avion de chasse.
 
-Ces approches sans gradient présentent l'avantage de ne pas nécessiter de calcul analytique du gradient, ce qui les rend adaptées à des modèles complexes ou à des simulations coûteuses. Toutefois, elles souffrent d'une convergence lente et d'une forte dépendance au nombre d'évaluations de la fonction objectif, ce qui limite leur applicabilité à des modèles de substitution ou à des méthodes de faible fidélité. De plus, la qualité des solutions obtenues dépend fortement de la représentativité des modèles utilisés et de la capacité à intégrer des contraintes industrielles réalistes. Enfin, les algorithmes basés sur des substituts sont connus pour avoir des difficultés à gérer les contraintes, les satisfaisant avec une faible précision et peinant à respecter les critères d'arrêt \citep{Parr2010}. 
+Ces approches sans gradient présentent l'avantage de ne pas nécessiter de calcul analytique du gradient, ce qui les rend adaptées à des modèles complexes ou à des simulations coûteuses. Toutefois, elles souffrent d'une convergence lente et d'une forte dépendance au nombre d'évaluations de la fonction objectif, ce qui limite leur applicabilité à des modèles de substitution ou à des méthodes de faible fidélité. De plus, la qualité des solutions obtenues dépend fortement de la représentativité des modèles utilisés et de la capacité à intégrer des contraintes industrielles réalistes. Enfin, les algorithmes surrogate-based sont connus pour avoir des difficultés à gérer les contraintes, les satisfaisant avec une faible précision et peinant à respecter les critères d'arrêt \citep{Parr2010}. 
 
 À l'inverse, les méthodes d'optimisation basées sur le gradient, bien que moins répandues dans ce domaine, offrent un potentiel considérable pour l'optimisation de formes à haute fidélité. Pan et al.~\citep{Pan2017} ont ainsi réalisé une optimisation aérodynamique furtive basée sur le gradient, en combinant modélisation paramétrique et calcul analytique des gradients pour piloter la forme d'un avion à aile volante. Li et al~\citep{Li2019} ont utilisé une approche similaire, en alternant critères aérodynamiques et furtifs comme objectif et contrainte, et ont montré que le meilleur compromis est obtenu en intégrant les deux aspects dans une fonction objective unique. 
 
