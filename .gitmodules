@@ -5,4 +5,4 @@
 [submodule "chapters/chapter_3"]
 	path = chapters/chapter_3
 	url =  https://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@github.com/MonPetitCanardArcEnCiel/Article_BEM.git
-	branch = remotes/origin/mdpi
+	branch = mdpi
