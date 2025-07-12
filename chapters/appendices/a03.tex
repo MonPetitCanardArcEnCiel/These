@@ -1,1 +1,80 @@
 \chapter{La formule de Stratton-Chu}% \citep{Stratton1939}}
+\chaptermark{Stratton-Chu}
+
+Dans cet appendice, nous reconstruisons la formule initialement proposée par Stratton et Chu \citep{Stratton1939} pour les champs électromagnétiques dans un milieu vide. Cette formule est une représentation intégrale des champs électromagnétiques en termes de sources sur une surface fermée.
+
+\section{Les equations de Maxwell}
+Rappelons les équations de Maxwell dans un milieu homogène et sans pertes $\Omega$, en considérant un régime harmonique dont le nombre d'onde est $k$ :
+\begin{subequations}
+	\begin{equation}
+		\nabla \cdot{} \D = \varrho, \label{app-eq:divD}
+	\end{equation}
+	\begin{equation}
+		\nabla \cdot \B = 0, \label{app-eq:divB}
+	\end{equation}
+	\begin{equation}
+		\nabla \times \E = j\omega\B - \mathbf M, \label{app-eq:rotE}
+	\end{equation}
+	\begin{equation}
+		\nabla \times \Hh = \J -j\omega\D, \label{app-eq:rotH}
+	\end{equation}
+	% together with a continuity equation :
+	% \begin{equation}
+	% 	\label{bem-eq:cont}
+	% 	\nabla\cdot\J + \derpartt{\varrho} = 0,
+	% \end{equation}
+\end{subequations}
+%
+où $\D = \varepsilon_0 \E$ et $\Hh = \B/\mu_0$, et ou ù $\omega = \frac{k\mu_0}{Z_0}$ avec $\varepsilon$ la permittivité du vide, $\mu$ la perméabilité du vide, $\varrho$ la densité de charges électriques et $\J$ et $\mathbf M$ respectivement la densité de courant électrique et magnétique.
+
+\section{Formule de représention}
+Soit une surface fermée connexe $\Gamma$ de normale $\n$ orientée vers l'extérieur. La surface $\Gamma$ divise un domaine $\Omega$ en deux régions vides : l'intérieur $\Omega^-$ et l'extérieur $\Omega^+$. Soit une onde plane monochromatique $\left(\E\inc, \Hh\inc\right)$ se propageant dans le milieu $\Omega^+$.
+
+
+Puisque chaque sous-domaine est vide, les densités de courant électrique et magnétique $\J$ et $\mathbf M$ sont nuls. Le champ $(\E, \Hh)$ régulier dans $\Omega^+$ et $\Omega^-$ vérifie donc : 
+\begin{equation}
+    \left\{\begin{array}{l}
+        \nabla\times\E - jkZ_0\Hh = ,\text{ dans } \Omega^+ \text{ et } \Omega^- \\
+        \nabla\times\Hh + \dfrac{jk}{Z_0}\Hh = ,\text{ dans } \Omega^+ \text{ et } \Omega^- \\
+        \lim\limits_{|x|\to\infty} |x| \left(\left(\Hh - \Hh\inc\right)\times\dfrac{x}{|x|} - \left(\E - \E\inc\right)\right) = 0
+    \end{array}\right.
+    \label{app-eq:problem}
+\end{equation}
+%
+La condition aux limites est appelée condition de radiation de Silver-Müller.
+
+L'intérêt des formules de représentations est de rammener le problème \eqref{app-eq:problem} à un problème sur $\mathbb R^3$.
+
+\paragraph{}
+D'après la formule pour le rotationnel établie en \eqref{app-eq:rot}, les rotationnels de $\E$ et $\Hh$  s'écrivent :
+\begin{equation}
+    \left\{\begin{array}{l}
+        \nabla\times\E = \{\nabla\times\E\} - \mathbf M, \text{ dans } \mathbb R^3 \\
+        \nabla\times\Hh = \{\nabla\times\Hh\} + \J, \text{ dans } \mathbb R^3
+    \end{array}\right.
+\end{equation}
+%
+avec 
+\begin{equation}
+    \left\{\begin{array}{l}
+        \J = \n\times\left(\Hh^+ - \Hh^-\right), \\
+        \mathbf M =  \left(\E^+ + \E^-\right)\times\n,
+    \end{array}\right.\quad \E^\pm := (\E|_{\Omega^\pm})|_\Gamma, \ (\Hh^\pm := (\Hh|_{\Omega^\pm})|_\Gamma).
+\end{equation}
+
+Comme, de plus, $\E$ et $\Hh$ vérifient \eqref{app-eq:problem}, on obtient : 
+
+\begin{equation}
+    \left\{\begin{array}{l}
+        \nabla\times\E - jkZ_0\Hh = -\M, \text{ dans } \mathbb R^3\\
+        \nabla\times\Hh + \dfrac{jk}{Z_0}\Hh = \J, \text{ dans } \mathbb R^3\\
+        \lim\limits_{|x|\to\infty} |x| \left(\left(\Hh - \Hh\inc\right)\times\dfrac{x}{|x|} - \left(\E - \E\inc\right)\right) = 0
+    \end{array}\right.
+    \label{app-eq:problem}
+\end{equation}
+
+
+
+\section{Formule de Stratton-Chu}
+
+\printbibliography[heading=subbibintoc]

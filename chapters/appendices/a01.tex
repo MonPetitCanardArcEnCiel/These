@@ -1,6 +1,8 @@
 
 \chapter{Rappels d'analyse vectorielle}
+\chaptermark{Analyse vectorielle}
 % \section*{Rappels d'analyse vectorielle}
+\section{Rappels divers}
 Soient un vecteur $P$ et un réel $\lambda$. Rappelons que 
 \begin{equation}
 \label{eq:div_scal}
@@ -48,3 +50,22 @@ En particulier, si $u\perp v$, alors :
     u\times v\times u = (u\cdot u)v - (v\cdot u)u = |u|^2 v
     \label{eq:prodvec}
 \end{equation}
+
+\section{Saut à  travers une frontière}
+
+Soient deux domaines de $\mathbb R^3$ :  $\Omega^-$ et $\Omega^+$ séparés par une frontière $\Gamma$ de normale unitaire $\n$. Soit $W$ un champ défini est régulier dans $\Omega^-$ et $\Omega^+$. Le rotation au sens des distributions de $W$ est défini par :
+\begin{equation}
+    \nabla\times W = \{\nabla\times W\} + [\n\times W]_{\delta_\Gamma}
+    \label{app-eq:rot}
+\end{equation}
+
+où $ \{\nabla\times W\}$ est la fonction régulière par morceau définie par :
+\begin{equation}
+     \{\nabla\times W\}|_{\Omega^\pm} = \nabla\times W|_{\Omega^\pm},
+\end{equation}
+%
+et 
+\begin{equation}    
+    [\n\times W] = \n\times W^+ - \n\times W^-
+\end{equation}
+est le saut à travers $\Gamma$.
