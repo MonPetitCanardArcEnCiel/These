@@ -347,7 +347,7 @@ Puissance rayonnée par unité d'angle solide :
 	P(\theta,\phi) = R^2|S| = \frac{R^2}{2Z_0}\left(|\E_\theta|^2+|\E_\phi|^2\right)
 \end{equation}
 
-\section{Calcul du champ de densité de courant électrique}
+\section[Courant électrique]{Calcul du champ de densité de courant électrique}
 	\subsection{Condition de saut à travers une fine plaque conductrice}
 
 Considérons une plaque plane présentant une densité volumique de courant $\vect j$, de dimensions infines dans les directions $\ex$ et $\ey$ et s'étendant de $z = -a/2$ à $z = a/2$. Le reste de l'espace est vide ($\rho = 0$ et $\vect j = \vec0$). On note 1 le demi espace $z > a/ 2$ et 2 le demi espace $z > a/2$. Cette plaque est éclairée depuis le demi-espace 2 par un champ électromagnétique $(\E,\B)$.
@@ -406,7 +406,7 @@ Puisque $\vect{j_S}$ est tangent à la surface et donc normal à $\vect{n_{12}}$
 
 
 
-\section{L'équation d'antenne et la section équivalente radar}
+\section[SER]{L'équation d'antenne et la section équivalente radar}
 \label{sec:rcs}
 
 On se place dans un cadre monostatique. Soient $G$ le gain de l'antenne, $P_t$ la puissance émise, $P_r$ la puissance réfléchie vers l'antenne, $\lambda$ la longueur d'onde d'émission, et $R$ la distance de la cible. La surface équivalente radar (SER) s'écrit :
@@ -561,48 +561,52 @@ Dans le cas $Q \to 0$, l'équation précédente est équivalente à :
 	I = S
 \end{equation}
 
-\section{Algorithme de faces cachées}
-\label{sec:facescachees}
-
-Pour commencer, sur les zones qui ne sont pas marquées comme des surfaces d'épaisseur nulle, les facettes pour lesquelles le produit scalaire entre leur normale et la direction d'émission est positif sont marquées comme masquées.
-
-Ensuite, le maillage est projeté dans une base $(\er,\vect{e_Y},\vect{e_Z})$, où $\er$ est la direction d'observation et $(\vect{e_Y},\vect{e_Z})$ est une base orthonormée du plan perpendiculaire à $\er$. Sauf mention contraire, toutes les coordonnées seront exprimées dans cette base dans le suite de cette section. Ainsi, on peut considérer différemment les deux dernières coordonnées de chaque sommet, que l'ont peut voir comme les coordonnées projetées dans le plan perpendiculaire à $\er$, et la première coordonnée, qui représente la "profondeur" de chaque point dans cette direction. L'algorithme de face cachées revient alors à chercher des intersections entre facettes dans le plan $(\vect{e_Y},\vect{e_Z})$, puis à utiliser la profondeur de chaque facette pour déterminer laquelle est cachée par laquelle. Une facette est considérée masquée par une autre si son barycentre dans le plan est dans la triangle formé par la seconde facette et plus profond que celui de l'autre.
-
-Le barycentre de chaque facette est calculé. On calcule également l'enveloppe rectangulaire de chaque facette dans le plan, c'est à dire, le rectangle de sommets $(Y_{\min},Z_{\min}),(Y_{\min},Z_{\max}),(Y_{\max},Z_{\max}),(Y_{\max},Z_{\min})$.
-
-Le plan $(\vect{e_Y},\vect{e_Z})$ est ensuite divisé en une grille cartésienne, et les facettes du maillage sont réparties dans chaque zone de cette grille : une facette est dans une zone si elle l'intersecte. Une facette peut donc être dans plusieurs zones. La taille minimale de chaque zone de la grille est au moins 4 fois la taille de barre maximale du maillage afin de simplifier l'algoritme de répartition. L'intérêt de cette étape est de ne pas chercher d'intersection entre des facettes trop éloignées et donc de réduire le temps de calcul. Ce qui est décrit dans la suite se fait successivement zone par zone.
-
-Soit une zone donnée de la grille cartésienne. Pour chaque facette $f$ dans cette zone, on dresse la liste de toutes les autres facettes dans la même zone. Cette liste est la liste des facettes masquées par $f$. Les facettes déjà masquées sont exclues de cette liste. On calcule l'intersection entre l'enveloppe carrée de $f$ et celle de chaque facette de la liste, et les facettes dont l'enveloppe n'intersecte pas celle de $f$ sont exclues de la liste. On exclue ensuite les facettes dont le barycentre est moins profond que le sommet le moins profond de $f$. On exclue ensuite les facettes dont les barycentres ne sont pas inclus dans l'enveloppe de $f$. \`A chacune de ces étapes, si la liste est vide, alors $f$ ne masque aucune facette et on passe à la facette suivante.
-
-S'il reste des facettes dans la liste, alors pour chacune de ces facettes on vérifie si son barycentre est dans le triangle formé par $f$, et si son barycentre est plus profond que celui de $f$. Les facettes qui vérifient ces deux critères sont marquées comme masquées.
-
-\section{Détection des arêtes}
-\label{sec:aretes}
-Les arêtes sont marquées par le logiciel de maillage par des n\oe uds présentant des normales doubles. Si les deux sommets d'une barre ont deux normales diférentes dans chacun des deux éléments bordant la barre, alors la barre fait partie d'une arête franche.
 
 \section{PTD}
 \label{sec:PTD}
+Dans cette section, je présente succintement la théorie physique de la diffraction (PTD) proposée par Michaeli en 1986. Pour plus de détails, je vous renvoie à l'article original \cite{Michaeli1986a}.
+% Pas encore implémentée
 
-Pas encore implémentée
+Le principe de cette méthode est d'ajouter un terme correctif $I^f$ à la densité de courant surfacique sur les arêtes. Ce terme dépend de la géométrie des deux facettes adjacentes à l'arête et du nombre d'onde $k$ : $$I^f = I_1^f - I_2^f$$ où $I_n^f$ est la contribution de l'arête $n$ au terme correctif de la diffraction.
 
-\section{Fonction coût}
-\label{sec:cout}
+\paragraph{}
+Le terme correctif de l'arête 1 est donné par l'expression : 
+\begin{equation}
+	\begin{split}
+		I_1^f =& -\frac{2j}{kZ_0\sin^2\beta}\left\{\frac{\sin\phi \delta(\pi-\theta)}{\cos\phi+\mu} + \frac{(1/N)\sin(\phi/N)}{\cos[(\pi-\alpha)/N] - \cos(\phi/N)}\right\} \mathbf z\cdot\E\inc  \\
+		& + \frac{2j\sin[(\pi - \alpha)/N]}{Nk\sin\beta\sin\alpha}\frac{\mu\cot\beta'-\cot\beta\cot\phi}{\cos(\phi/N)-\cos[(\pi-\alpha)/N]}\mathbf z\cdot\Hh\inc
+	\end{split}
+\end{equation}
+%
+où $\delta(x) = 1$ si $x > 0$ et $\delta(x) = 0$ sinon, $\mu = \sin\beta\cos\phi/\sin\beta'$ et $\alpha = -j\ln(\mu + j\sqrt{1-\mu^2})$. Les angles $\beta$, $\beta'$ et $\phi$ et la quantité $N$ sont définies dans la figure \ref{fig:PTD}.
 
-Une fonction coût possible est une fonction seuil pondérée : on calcul le nombre de directions dans les quelles la SER est supérieur à un seuil déterminer (pour l'instant, 0 dB), pondéré par une fonction affine de la direction : le poid est maximal dans l'axe de l'avion vers l'avant et minimal dans l'axe de l'avion, vers l'arrière.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.75\textwidth]{images/PTD.png}
+	\caption{Géométrie de la diffraction d'arête. Les lignes pointillées représentent les projections des directions d'incidence et d'observation sur le plan $xy$. Image tirée de \cite{Michaeli1986a} (figure 1).}
+	\label{fig:PTD}
+\end{figure}
+
+\paragraph{}
+L'expression du terme correctif de la facette 2 $I^f_2$ s'obtient à partir de $I^f_1$ en applicant les transformations suivantes :
+\begin{equation}
+	\begin{split}
+		\mathbf z\to-\mathbf z,\quad \phi\to N\pi - \phi \\
+		\beta\to\pi-\beta,\quad \beta'\to\pi-\beta'
+	\end{split}
+\end{equation}
 
 \section{Description du code}
 \label{sec:code}
-
 \begin{enumerate}
 	\item Lecture des cartes d'entrée
 	\item Lecture du maillage
 	\item Calcul des éléments voisins d'éléments
-	\item Detection des arêtes (voir section \ref{sec:aretes})
+	\item Detection des arêtes %(voir section \ref{sec:aretes})
 	\item Boucle sur les directions d'observations
 	\begin{enumerate}
-		\item Détermination des faces cachées (voir section \ref{sec:facescachees})
 		\item Calcul de $\vect{l_r}$ (eq \eqref{eq:gordon_lr})
-		\item Coucle sur les facettes
+		\item Boucle sur les facettes
 		\begin{enumerate}
 			\item Calcul du barycentre de la facette
 			\item Calcul de la normale à la facette
@@ -610,9 +614,16 @@ Une fonction coût possible est une fonction seuil pondérée : on calcul le nom
 			\item \'Elimination des barres frontières
 			\item Calcul de $I$ par l'équation \eqref{eq:gordon_res} ou l'équation \eqref{eq:gordon_res_0}
 		\end{enumerate}
+		\item Boucle sur les arêtes
+		\begin{enumerate}
+			\item Identification des facettes adjacentes
+			\item Calcul des angles $\beta$, $\beta'$, $\phi$ et de $N$
+			\item Calcul de $I^f_1$ et $I^f_2$ par l'équation précédente
+		\end{enumerate}
+		\item Ajout du terme correctif $I^f$ à $I$
 		\item Calcul de la SER $\sigma$ par l'équation \eqref{eq:rcs}
 	\end{enumerate}
-	\item Calcul de la fonction coût (voir section \ref{sec:cout})
+	\item Calcul de la fonction coût %(voir section \ref{sec:cout})
 \end{enumerate}
 
 $$f(X)$$
@@ -621,8 +632,10 @@ $$\nabla f|_X$$
 
 $$p = \rho rT$$
 
-\section{Calcul du gradient}
+% \section{Calcul du gradient}
 
-Plus tard
+% Plus tard
 
-Coucou
+% Coucou
+
+\printbibliography[heading=subbibintoc]
