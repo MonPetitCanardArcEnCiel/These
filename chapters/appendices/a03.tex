@@ -1,7 +1,7 @@
 \chapter{La formule de Stratton-Chu}% \citep{Stratton1939}}
 \chaptermark{Stratton-Chu}
 
-Dans cet appendice, nous reconstruisons la formule initialement proposée par Stratton et Chu \citep{Stratton1939} pour les champs électromagnétiques dans un milieu vide. Cette formule est une représentation intégrale des champs électromagnétiques en termes de sources sur une surface fermée.
+Dans cet appendice, nous reconstruisons la formule initialement proposée par Stratton et Chu \citep{Stratton1939} pour les champs électromagnétiques dans un milieu vide. Cette formule est une représentation intégrale des champs électromagnétiques en termes de sources sur une surface fermée. Ce développement est tiré du cours \citep{Bendali2013}. Je vous y renvoie pour plus de détails.
 
 \section{Les equations de Maxwell}
 Rappelons les équations de Maxwell dans un milieu homogène et sans pertes $\Omega$, en considérant un régime harmonique dont le nombre d'onde est $k$ :
@@ -34,8 +34,8 @@ Soit une surface fermée connexe $\Gamma$ de normale $\n$ orientée vers l'exté
 Puisque chaque sous-domaine est vide, les densités de courant électrique et magnétique $\J$ et $\mathbf M$ sont nuls. Le champ $(\E, \Hh)$ régulier dans $\Omega^+$ et $\Omega^-$ vérifie donc : 
 \begin{equation}
     \left\{\begin{array}{l}
-        \nabla\times\E - jkZ_0\Hh = ,\text{ dans } \Omega^+ \text{ et } \Omega^- \\
-        \nabla\times\Hh + \dfrac{jk}{Z_0}\Hh = ,\text{ dans } \Omega^+ \text{ et } \Omega^- \\
+        \nabla\times\E - jkZ_0\Hh = 0,\text{ dans } \Omega^+ \text{ et } \Omega^- \\
+        \nabla\times\Hh + \dfrac{jk}{Z_0}\Hh = 0,\text{ dans } \Omega^+ \text{ et } \Omega^- \\
         \lim\limits_{|x|\to\infty} |x| \left(\left(\Hh - \Hh\inc\right)\times\dfrac{x}{|x|} - \left(\E - \E\inc\right)\right) = 0
     \end{array}\right.
     \label{app-eq:problem}
@@ -59,7 +59,7 @@ avec
     \left\{\begin{array}{l}
         \J = \n\times\left(\Hh^+ - \Hh^-\right), \\
         \mathbf M =  \left(\E^+ + \E^-\right)\times\n,
-    \end{array}\right.\quad \E^\pm := (\E|_{\Omega^\pm})|_\Gamma, \ (\Hh^\pm := (\Hh|_{\Omega^\pm})|_\Gamma).
+    \end{array}\right.\quad \E^\pm \coloneq (\E|_{\Omega^\pm})|_\Gamma, \ (\Hh^\pm \coloneq (\Hh|_{\Omega^\pm})|_\Gamma).
 \end{equation}
 
 Comme, de plus, $\E$ et $\Hh$ vérifient \eqref{app-eq:problem}, on obtient : 
@@ -70,11 +70,38 @@ Comme, de plus, $\E$ et $\Hh$ vérifient \eqref{app-eq:problem}, on obtient :
         \nabla\times\Hh + \dfrac{jk}{Z_0}\Hh = \J, \text{ dans } \mathbb R^3\\
         \lim\limits_{|x|\to\infty} |x| \left(\left(\Hh - \Hh\inc\right)\times\dfrac{x}{|x|} - \left(\E - \E\inc\right)\right) = 0
     \end{array}\right.
-    \label{app-eq:problem}
+    \label{app-eq:problem-2}
 \end{equation}
+
+A partir des résultats de la section \ref{app-sec:champ-elec}, on obtient la formule de représentation :
+
+\begin{equation}
+    \left\{\begin{array}{l}
+        \E(x) = \E\inc(x) + jkZ_0\left(\TJ\right)(x) + (\mathcal K\mathbf M)(x),\\
+        \Hh(x) = \Hh\inc(x) - \mathcal K\J(x) + \dfrac{jk}{Z_0}(\mathcal T\mathbf M)(x),
+    \end{array}\right.,\quad x\notin\Gamma,
+\end{equation}
+
+avec
+\begin{equation}
+    \begin{split}
+        (\mathcal T\mathbf P)(x) =& \left(\frac1{k^2}\nabla\nabla\cdot+1\right)\int_\Gamma G(x,y)\J(y)\dd\Gamma(y),\quad x\notin\Gamma \\
+        (\mathcal K\mathbf P)(x) =& -\nabla\times\int_\Gamma G(x,y)\mathbf M(x)\dd\Gamma(y),\quad x\notin\Gamma,
+    \end{split}
+    \label{app-eq:representation}
+\end{equation}
+
+où $G(x,y)$ est le noyau de Green : $$G(x,y) = \frac{e^{jk|x-y|}}{4\pi|x-y|}.$$
 
 
 
 \section{Formule de Stratton-Chu}
+La formule de Stratton-Chu est une particularisation de la formule de représentation \eqref{app-eq:representation} en prenant $\E|_{\Omega^-} = \Hh|_{\Omega^-} = 0$,ce qui est résonnable si on considère $\Gamma$ comme une surface parfaitement conductrice illuminée par un champ $\left(\E\inc,\Hh\inc\right)$ :
 
+\begin{equation}
+    \E\inc + jkZ_0(\TJ)(x) + (\mathcal K\mathbf M)(x) = \left\{\begin{array}{lr}
+        \E(x)&\text{ si } x\in\Omega^+\\
+        0&\text{ si } x\in\Omega^-
+    \end{array}\right.
+\end{equation}
 \printbibliography[heading=subbibintoc]
