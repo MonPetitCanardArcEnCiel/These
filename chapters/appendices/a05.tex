@@ -464,8 +464,7 @@ Certaines de ces facettes sont dans l'ombre des autres. Dans le cadre de l'appro
 	\end{array}\right.
 \end{equation}
 %
-avec $\mathbf{n}$ la normale à la facette. Les détails de l'agorithme de faces cachées sont donnés dans la section \ref{sec:facescachees}.
-
+avec $\mathbf{n}$ la normale à la facette.
 Puisque le champ magnétique est une onde plane, on a :
 \begin{equation}
 	\B_i = \frac{\mu_0}{Z_0}\vect{k_i}\times\E_i = \frac{\mu_0}{Z_0}\left(E_{i,\phi}\eti-E_{i,\theta}\epi\right)e^{-j\R_s\cdot\ki}.
@@ -576,6 +575,7 @@ Le terme correctif de l'arête 1 est donné par l'expression :
 		I_1^f =& -\frac{2j}{kZ_0\sin^2\beta}\left\{\frac{\sin\phi \delta(\pi-\theta)}{\cos\phi+\mu} + \frac{(1/N)\sin(\phi/N)}{\cos[(\pi-\alpha)/N] - \cos(\phi/N)}\right\} \mathbf z\cdot\E\inc  \\
 		& + \frac{2j\sin[(\pi - \alpha)/N]}{Nk\sin\beta\sin\alpha}\frac{\mu\cot\beta'-\cot\beta\cot\phi}{\cos(\phi/N)-\cos[(\pi-\alpha)/N]}\mathbf z\cdot\Hh\inc
 	\end{split}
+	\label{eq:PTD}
 \end{equation}
 %
 où $\delta(x) = 1$ si $x > 0$ et $\delta(x) = 0$ sinon, $\mu = \sin\beta\cos\phi/\sin\beta'$ et $\alpha = -j\ln(\mu + j\sqrt{1-\mu^2})$. Les angles $\beta$, $\beta'$ et $\phi$ et la quantité $N$ sont définies dans la figure \ref{fig:PTD}.
@@ -618,7 +618,7 @@ L'expression du terme correctif de la facette 2 $I^f_2$ s'obtient à partir de $
 		\begin{enumerate}
 			\item Identification des facettes adjacentes
 			\item Calcul des angles $\beta$, $\beta'$, $\phi$ et de $N$
-			\item Calcul de $I^f_1$ et $I^f_2$ par l'équation précédente
+			\item Calcul de $I^f_1$ et $I^f_2$ par l'équation \eqref{eq:PTD}
 		\end{enumerate}
 		\item Ajout du terme correctif $I^f$ à $I$
 		\item Calcul de la SER $\sigma$ par l'équation \eqref{eq:rcs}

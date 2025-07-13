@@ -1,1 +1,137 @@
 \chapter{Expression du champ électrique lointain.}
+\chaptermark{Champ lointain}
+
+Dans cette annexe, j'explicite le développement de l'expression du champ électrique lointain introduite à l'équation \eqref{bem-eq:taylor}. Ce développement est tiré du cours \cite{Bendali2013}. Je vous y renvoie pour plus de détails.
+
+
+% \section{Les equations de Maxwell}
+% Rappelons les équations de Maxwell dans un milieu homogène et sans pertes $\Omega$, en considérant un régime harmonique dont le nombre d'onde est $k$ :
+% \begin{subequations}
+% 	\begin{equation}
+% 		\nabla \cdot{} \D = \varrho, \label{app-eq:divD}
+% 	\end{equation}
+% 	\begin{equation}
+% 		\nabla \cdot \B = 0, \label{app-eq:divB}
+% 	\end{equation}
+% 	\begin{equation}
+% 		\nabla \times \E = j\omega\B - \mathbf M, \label{app-eq:rotE}
+% 	\end{equation}
+% 	\begin{equation}
+% 		\nabla \times \Hh = \J -j\omega\D, \label{app-eq:rotH}
+% 	\end{equation}
+% 	% together with a continuity equation :
+% 	% \begin{equation}
+% 	% 	\label{bem-eq:cont}
+% 	% 	\nabla\cdot\J + \derpartt{\varrho} = 0,
+% 	% \end{equation}
+% \end{subequations}
+% %
+% où $\D = \varepsilon_0 \E$ et $\Hh = \B/\mu_0$, et ou ù $\omega = \frac{k\mu_0}{Z_0}$ avec $\varepsilon$ la permittivité du vide, $\mu$ la perméabilité du vide, $\varrho$ la densité de charges électriques et $\J$ et $\mathbf M$ respectivement la densité de courant électrique et magnétique.
+
+
+
+Rappelons l'équation de Helmholtz vectoriel en 3D introduite à l'équation \eqref{bem-eq:Helmholtz} :
+
+\begin{equation}
+    -\left(\nabla^2+k^2\right)\E = \Tt,
+    \label{app-eq:helm}
+\end{equation}
+
+avec
+\begin{equation}
+    \Tt \coloneq -jkZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)\J-\nabla\times\mathbf M
+\end{equation}
+
+\section{Propagation d'une onde dans un milieu avec pertes}
+
+\subsection{Caractérisation d'un milieu avec pertes}
+Les pertes dans un milieu sont modélisées en multipliant dans les équations de Maxwell la permitivité du vide $\varepsilon_0$ par une permittivité complexe $\varepsilon = \varepsilon_r + j\varepsilon_i$, et la perméabilité du vide $\mu_0$ par une perméabilité complexe $\mu = \mu_r + j\mu_i$, vérifiant $$\varepsilon_r,\mu_r \geq 1, \ \varepsilon_i, \mu_i \geq 0,\text{ et } \varepsilon_i+\mu_i > 0.$$
+
+On peut alors définir définir des arguments $\theta_\varepsilon$ et $\theta_\mu$ tels que :
+\begin{equation}
+    \begin{array}{l}
+        \tan\theta_\varepsilon = \dfrac{\varepsilon_i}{\varepsilon_r}, \\
+        \\
+        \tan\theta_\mu = \dfrac{\mu_i}{\mu_r},
+    \end{array},\quad 0\leq \theta_\varepsilon, \theta_\mu < \frac{\pi}{2}.
+\end{equation}
+
+
+La permitivité et la perméabilité complexes peuvent alors être écrites sous la forme :
+\begin{equation}
+    \varepsilon = \varepsilon_r(1+j\tan\theta_\varepsilon), \quad \mu = \mu_r(1+j\tan\theta_\mu).
+\end{equation}
+
+On peut donc caractériser un milieu avec pertes par un indice $$n = |n|e^{i\theta},$$ dont le module est est $|n| = \sqrt{|\varepsilon\mu|}$ et l'argument $0\leq\theta = \left(\theta_\varepsilon + \theta_\mu\right)/2\leq\pi/2$.
+
+\subsection{Propagation libre dans un milieu avec pertes}
+
+Notons 
+\begin{equation}
+    h_{kn} \coloneq \frac{e^{jk|x|}}{4\pi|x|},\text{ pour } x\neq0,
+\end{equation}
+ la solution de de l'équation :
+ \begin{equation}
+    -\left(\Delta h_{kn}+k^2n^2h_{kn}\right) = \delta
+ \end{equation}
+
+Comme $\Tt$ est à support compact, on a : 
+\begin{equation}
+     -\left(\Delta +k^2n^2\right)\left(h_{kn}\ast\Tt\right) = \delta\ast\Tt = \Tt.
+\end{equation}
+
+Il en résulte que 
+\begin{equation}
+    u(x) = \int_{\Omega} \frac{e^{jkn|x-y|}}{4\pi|x-y|}\Tt(y)\dd \Omega(y)
+\end{equation}
+est solution de \eqref{app-eq:helm}
+
+\subsection{Champ lointain dans un milieu avec pertes}
+
+Soit $R > 0$. Si $|x|\to\infty$ et $|y|<R$, alors :
+\begin{equation}
+    |x-y|^2 = |x|^2 - 2 x\cdot y + |y|^2,
+\end{equation}
+
+et donc : 
+\begin{equation}
+    |x-y| = |x|\sqrt{1-2\frac{x\cdot y}{|x|^2}+\frac{|y|^2}{|x|^2}} = |x| - \frac{x}{|x|}\cdot y + \mathcal O\left(\frac1{|x|}\right).
+\end{equation}
+
+En développant l'exponentielle, on obtient alors :
+\begin{equation}
+    \frac{e^{jkn|x-y|}}{4\pi|x-y|} = \frac{e^{jk|n|\cos\theta|x|}}{4\pi|x|}e^{-k|n|\sin\theta|x|}e^{-jkn\frac{x}{|x|}\cdot y} + \left(1+\mathcal O\left(\frac1{|x|}\right)\right).
+\end{equation}
+
+On en déduit donc le développement de la solution $u$ :
+\begin{equation}
+    u(x) = \frac{e^{jk|n|\cos\theta|x|}}{4\pi|x|}e^{-k|n|\sin\theta|x|}\int_{\Omega} e^{-jkn\frac{x}{|x|}\cdot y}\Tt(y)\dd\Omega(y) + \mathcal O\left(\frac1{|x|}\right).
+    \label{app-eq:taylor-pertes}
+\end{equation}
+
+\section{Propagation d'un onde dans un milieu sans pertes}
+\subsection{Propagation libre dans un milieu sans pertes}
+\label{app-sec:champ-elec}
+Pour obtenir l'expression du champ électrique dans un milieu sans pertes, il suffit de construire une solution dans un milieu avec pertes caractérisé par un argument $\theta$ et de passer à la limite $\theta\to 0$. Ce procédé est appelé procédé d'absorption limite.
+
+
+On a alors :
+\begin{equation}
+    \E = jkZ_0\left(\frac1{k^2}\nabla\nabla\cdot+1\right)h_k\ast\J - \nabla\times h_k\ast\mathbf M,
+\end{equation}
+
+avec $$h_k = \frac{e^{jk|x|}}{4\pi|x|}.$$
+
+\subsection{Champ  lointain dans un milieu sans pertes}
+De même, par passage à la limite $\theta\to0$ dans l'équation \eqref{app-eq:taylor-pertes}, on a la décomposition : 
+\begin{equation}
+    \E(x) = \frac{e^{jk\norm x}}{\norm x}\left\{\E^\infty\left(\frac{x}{\norm x}\right)+\mathcal O\left(\frac1{\norm x}\right)\right\},
+    \label{app-eq:taylor}
+\end{equation}
+%
+avec, pour $\uu$ un vecteur unitaire,
+\begin{equation}
+        \E^\infty\left(\uu\right) = \frac{jk}{4\pi}\uu\times\left(Z_0\mathcal F(\J)\left(\uu\right)\times \uu - \mathcal F(\mathbf M)\left(\uu\right)\right).
+\end{equation}
+
+\printbibliography[heading=subbibintoc]
