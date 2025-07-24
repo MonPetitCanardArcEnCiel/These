@@ -100,7 +100,7 @@ On rappelle les équations de Maxwell:
 	\end{equation}
 \end{subequations}
 %
-où l'on a posé $D = \epsilon_0 E$ et $H = B/\mu_0$, et avec $\epsilon_0$ la permittivité diélectrique du matériau, $\mu_0$ sa perméabilité magnétique $\rho$ la densité volumique de charges électriques et $J$ la densité volumique de charges électrique.
+où l'on a posé $D = \epsilon_0 E$ et $H = B/\mu_0$, et avec $\epsilon_0$ la permittivité diélectrique du matériau, $\mu_0$ sa perméabilité magnétique $\rho$ la densité volumique de charges électriques et $J$ la densité volumique de courant électrique.
 
 En prenant le rotationnel de l'équation (\ref{eq:rotE}), on obtient 
 \begin{equation}
@@ -251,7 +251,7 @@ De plus, dans cette hypothèse, la région $V'$ en vient à être égale à $V$.
 
 		\subsubsection{Solution de l'équation de radiation pour un domaine non borné}
 		\label{sec:unbound}
-On se place maintenant dans le cas particulier où le volume $V$ n'est pas borné, mais que la distribution de sources est confinée dans une région bornée. Soit donc une sphère $S(R)$ de centre $P$ et de rayon $R$ suffisamment grand pour que toutes les sources soient incluses dans la sphère. Soit aussi un champ de vecteurs unitaires $\R_1$ colinéaire au rayon de la sphère et dirigé vers l'extérieur. On note $\mathbf n = -\R_1$.  En notant $\psi$ sous sa forme explicité, l'intégrale surfacique de l'équation \eqref{eq:general_solution} s'écrit alors : 
+On se place maintenant dans le cas particulier où le volume $V$ n'est pas borné, mais que la distribution de sources est confinée dans une région bornée. Soit donc une sphère $S(R)$ de centre $P$ et de rayon $R$ suffisamment grand pour que toutes les sources soient incluses dans la sphère. Soit aussi un champ de vecteurs unitaires $\R_1$ colinéaire au rayon de la sphère et dirigé vers l'extérieur. On note $\mathbf n = -\R_1$.  En notant $\psi$ sous sa forme explicite, l'intégrale surfacique de l'équation \eqref{eq:general_solution} s'écrit alors : 
 \begin{multline}
 	\inv{4\pi} \int_S[-j\omega\psi(\mathbf n\times\B)+(\mathbf n \times \E)\times\nabla\psi
 	+(\mathbf n\cdot\E)\nabla\psi]\di S 
@@ -259,12 +259,12 @@ On se place maintenant dans le cas particulier où le volume $V$ n'est pas born�
 	+\frac{\E}{R}\right\}\frac{e^{-jkR}}{R} \di S.
 \end{multline}
 
-Cette intégrale de surface disparaît lorsque  $R\to+\infty$ si le champs $\E$ satisfait les conditions suivantes :
+Cette intégrale de surface disparaît lorsque  $R\to+\infty$ si le champ $\E$ satisfait les conditions suivantes :
 \begin{subequations}
 	\label{eq:hypo}
 	\begin{equation}
 		\label{eq:hypo_finite}
-		\lim_{R\to\infty} R\E \text{ is finite,}
+		\lim_{R\to\infty} R\E \text{ existe,}
 	\end{equation}
 	\begin{equation}
 		\label{eq:hypo_nulle}
@@ -319,9 +319,9 @@ Avec ces approximations, et en gardant bien en tête que $R$ est une constante, 
 	e^{jk\R_S\cdot\R_1}\di V + \mathcal O\left(\inv{R^2}\right).
 \end{equation}
 
-Remarquons que l'intégrale du second membre de \eqref{eq:far_field} ne dépend pas de $r$. L'équation \eqref{eq:hypo_finite} est donc vérifiée. De plus, un rapide calcul, laissé en exercice pour le lecteur, montre que \eqref{eq:hypo_nulle} est également vérifiée dans cette approximation. 
+Remarquons que l'intégrale du second membre de \eqref{eq:far_field} ne dépend pas de $r$. L'équation \eqref{eq:hypo_finite} est donc vérifiée. De plus, un rapide calcul montre que \eqref{eq:hypo_nulle} est également vérifiée dans cette approximation. 
 
-Enfin le produit scalaire entre \eqref{eq:hypo_nulle} et $\R_1$ permet de montrer que le champ $\E$ est perpendiculaire à la fois à $\B$ et à $\R_1$ (au premier ordre en $R$). On peut donc approximer le champ EM lointain à une onde plane.
+Enfin le produit scalaire entre \eqref{eq:hypo_nulle} et $\R_1$ permet de montrer que le champ $\E$ est perpendiculaire à la fois à $\B$ et à $\R_1$ (au premier ordre en $R$). On peut donc approximer le champ EM lointain par une onde plane.
 
 Afin de simplifier une dernière fois l'équation, introduisons au point $P$ un système de coordonnées polaires $\left(\er,\et,\ep\right)$, avec $\er = \R_1$. On décompose le champ électrique ainsi : $$\E_P = \E_r+\E_\theta+\E_\phi = (\E_P\cdot\er)\er + (\E_P\cdot\et)\et +(\E_P\cdot\ep)\ep$$Comme on vient de le dire, on a $$\E_r = \vect 0.$$ Dans ce système de coordonnées, les deux composantes non nulles du champ électrique s'écrivent :
 \begin{subequations}
@@ -333,24 +333,10 @@ Afin de simplifier une dernière fois l'équation, introduisons au point $P$ un 
 	\end{align}
 \end{subequations}
 
-
-
-	\subsection{Puissance transmise}
-	
-Vecteur de Poynting (approx champ lointain $\to$ onde plane):
-\begin{equation}
-	S = \inv{2\mu_0} \Re(\E\times\B^*) = \inv{2Z_0}\left(|\E_\theta|^2+|\E_\phi|^2\right)\R_1
-\end{equation}
-
-Puissance rayonnée par unité d'angle solide :
-\begin{equation}
-	P(\theta,\phi) = R^2|S| = \frac{R^2}{2Z_0}\left(|\E_\theta|^2+|\E_\phi|^2\right)
-\end{equation}
-
 \section[Courant électrique]{Calcul du champ de densité de courant électrique}
 	\subsection{Condition de saut à travers une fine plaque conductrice}
 
-Considérons une plaque plane présentant une densité volumique de courant $\vect j$, de dimensions infines dans les directions $\ex$ et $\ey$ et s'étendant de $z = -a/2$ à $z = a/2$. Le reste de l'espace est vide ($\rho = 0$ et $\vect j = \vec0$). On note 1 le demi espace $z > a/ 2$ et 2 le demi espace $z > a/2$. Cette plaque est éclairée depuis le demi-espace 2 par un champ électromagnétique $(\E,\B)$.
+Considérons une plaque plane présentant une densité volumique de courant $\vect j$, de dimensions infines dans les directions $\ex$ et $\ey$ et s'étendant de $z = -a/2$ à $z = a/2$. Le reste de l'espace est vide ($\rho = 0$ et $\vect j = \vec0$). On note 1 le demi espace $z > a/ 2$ et 2 le demi espace $z < a/2$. Cette plaque est éclairée depuis le demi-espace 2 par un champ électromagnétique $(\E,\B)$.
 
 On pose $$\vect{j_S} = \int_{-\frac a2}^{\frac{a}{2}}\vect j\dd z.$$
 
@@ -378,7 +364,7 @@ Similairement, on montre en intégrant la quatrième équation de Maxwell \eqref
 	\end{array} \right.
 \end{equation}
 
-Si on l'on note $\vect{n_{12}}$ la normale à la surface de la plaque orientée en direction des $z \nearrow$, on peut réécrire l'équation précédente ainsi :
+Si on l'on note $\vect{n_{12}}$ la normale à la surface de la plaque orientée en direction des $z$ croissants, on peut réécrire l'équation précédente ainsi :
 \begin{equation}
 	\label{eq:saut_vect}
 	\vect{B_2}-\vect{B_1} = \mu_0 \vect j_s\times\vect{n_{12}}.
@@ -389,7 +375,7 @@ En pratique, dans les cas d'une plaque conductrice très fine, où $a \to 0$, la
 	\subsection{Cas d'un matériau parfaitement conducteur}
 	\label{sec:saut_pec}
 
-D'après un résultat classique de l'électromagnétisme, lorsqu'un matériau parfaitement conducteur est éclairé par un champ électromagnétique, le champ magnétique est nul dans le matériau, et la distribution volumique de courant est en fait confinée à une surface infiniment fine à l'interface entre le matériau et le vide en une distribustion surfacique de courant $\vect{j_S}$. Dans ces conditions, on se ramène donc au cas précédent avec un $a$ très petit et $\vect{B_1} = \vect 0$.
+D'après un résultat classique de l'électromagnétisme \citep{Green1871}, lorsqu'un matériau parfaitement conducteur est éclairé par un champ électromagnétique, le champ magnétique est nul dans le matériau, et la distribution volumique de courant est en fait confinée à une surface infiniment fine à l'interface entre le matériau et le vide en une distribustion surfacique de courant $\vect{j_S}$. Dans ces conditions, on se ramène donc au cas précédent avec un $a$ très petit et $\vect{B_1} = \vect 0$.
 
 L'équation \eqref{eq:saut_vect} devient alors :
 \begin{equation}
@@ -442,13 +428,13 @@ Le résultat de la section \ref{sec:champloin} donne :
 %
 où l'on a posé $Z_0 = \sqrt{\dfrac{\mu_0}{\epsilon_0}}$, $J^\theta = \J\cdot\et$ et $J^\phi = \J\cdot\ep$.
 
-Faisons l'approximation que le matériau est parfaitement conucteur.La distribution $\J$ devient alors une distribution surfacique $\J_s$ répartie à la frontière du volume $V$. L'équation précédente devient donc : 
+Faisons l'approximation que le matériau est parfaitement conducteur.La distribution $\J$ devient alors une distribution surfacique $\J_s$ répartie à la frontière du volume $V$. L'équation précédente devient donc : 
 \begin{equation}
 	\label{eq:surfacique}
 	\E_P = -\frac{jkZ_0}{4\pi R}e^{-jkR}\iint\limits_S \left(J_s^\theta\et+J_s^\phi\right) e^{jk\R_S\cdot\er} \di S.
 \end{equation}
 
-Approchons maintenant cette surface par un maillage surfacique à $N$ facettes triangulaire. Dans le cadre de l'approximation de l'optique physique, on considère que chaque facette est indépendante des autres. Le champ en $P$ est donc la superposition de tous les champs rayonnées par chaque facette :
+Approchons maintenant cette surface par un maillage surfacique à $N$ facettes triangulaire. Dans le cadre de l'approximation de l'optique physique, on considère que chaque facette est indépendante des autres. Le champ en $P$ est donc la superposition de tous les champs rayonnés par les facettes :
 \begin{equation}
 	\label{eq:maillage}
 		\E_P = -\frac{jkZ_0}{4\pi R}e^{-jkR}\sum_{l=1}^N\iint\limits_{S_l} \left(J_{s_l}^\theta\et + J_{s_l}^\phi\ep\right) e^{jk\R_S\cdot\er} \di S.
@@ -470,7 +456,7 @@ Puisque le champ magnétique est une onde plane, on a :
 	\B_i = \frac{\mu_0}{Z_0}\vect{k_i}\times\E_i = \frac{\mu_0}{Z_0}\left(E_{i,\phi}\eti-E_{i,\theta}\epi\right)e^{-j\R_s\cdot\ki}.
 \end{equation}
 
-La distribution de courants s'écrit donc :
+La distribution de courant s'écrit donc :
 \begin{equation}
 	\J_s = \left\{
 	\begin{array}{cl}
@@ -542,7 +528,7 @@ où l'on a posé (dans le cas monodimensionel):
 
 Posons $Q = |\vect n\times\vect{l_r}|$ et $\vect q = \dfrac{\vect n\times\vect{l_r}}{Q}$.
 
-La formule de Gordon donne :
+La formule de Gordon (voir \cite{Laval2006}, p. 35) donne :
 
 \begin{equation}
 	\label{eq:gordon_res}
@@ -626,11 +612,6 @@ L'expression du terme correctif de la facette 2 $I^f_2$ s'obtient à partir de $
 	\item Calcul de la fonction coût %(voir section \ref{sec:cout})
 \end{enumerate}
 
-$$f(X)$$
-
-$$\nabla f|_X$$
-
-$$p = \rho rT$$
 
 % \section{Calcul du gradient}
 
