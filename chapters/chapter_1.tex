@@ -2,166 +2,166 @@
 \chaptermark{Introduction}
 
 \section{Contexte et motivations.}
-    \label{sec:intro}
-    \subsection{Enjeux de la conception d'avions}
-    \label{sec:enjeux}
+\label{sec:intro}
+\subsection{Enjeux de la conception d'avions}
+\label{sec:enjeux}
 
-    Dans le cas d'avions de combat, l'aérodynamique et l'électromagnétisme sont deux points clés de sa conception, assurant son efficacité et surtout sa survivabilité. Les enjeux aérodynamiques sont de réduire la traînée de l'avion, afin de maximiser son rayon d'action, mais aussi de garantir sa man\oe uvrabilité afin d'assurer sa supériorité lors de combats aériens. Les enjeux de l'électromagnétisme sont d'assurer sa furtivité, c'est à dire réduire au maximum sa détectabilité RADAR. Cela permet non-seulement de faire en sorte que l'avion soit détectable le plus tard possible lors d'une mission, mais aussi d'empêcher les systèmes de visée d'accrocher l'avion.
-    
-    Malheureusement, les enjeux aérodynamiques et électromagnétiques sont souvent incompatibles.  Il suffit pour s'en convaincre d'observer la différence  entre le SR-71 (figure \ref{fig:sr71}), avion de reconnaissance conçus pour la vitesse et le F-117 (figure \ref{fig:f117}), premier avion d'attaque furtif, pourtant créés par le même concepteur, Lockheed (Martin), à une quinzaine d'année d'intervalle. Le SR-71 présente des formes très courbes, avec le moins d'angles possible, à l'exception de l'arête le long du fuselage. Les entrée d'air sont rondes et larges, écartées du fuselage afin de limiter les inhomogénéités de l'écoulement, et dégagées à l'exception des souris. Les surfaces de contrôle sont imposantes. \`A l'inverse, le F-117 propose des formes très facettées, avec les moins de courbes possible, le dessous de l'avion est plat, les entrées d'air sont très proches du fuselage pour bénéficier du masquage du corps de l'avion, et recouvertes par des grilles, les surfaces de contrôle sont limitées.
-    
-    \begin{figure}[htb]
+Dans le cas d'avions de combat, l'aérodynamique et l'électromagnétisme sont deux points clés de sa conception, assurant son efficacité et surtout sa survivabilité. Les enjeux aérodynamiques sont de réduire la traînée de l'avion, afin de maximiser son rayon d'action, mais aussi de garantir sa man\oe uvrabilité afin d'assurer sa supériorité lors de combats aériens. Les enjeux de l'électromagnétisme sont d'assurer sa furtivité, c'est à dire réduire au maximum sa détectabilité RADAR. Cela permet non-seulement de faire en sorte que l'avion soit détectable le plus tard possible lors d'une mission, mais aussi d'empêcher les systèmes de visée d'accrocher l'avion.
+
+Malheureusement, les enjeux aérodynamiques et électromagnétiques sont souvent incompatibles.  Il suffit pour s'en convaincre d'observer la différence  entre le SR-71 (figure \ref{fig:sr71}), avion de reconnaissance conçus pour la vitesse et le F-117 (figure \ref{fig:f117}), premier avion d'attaque furtif, pourtant créés par le même concepteur, Lockheed (Martin), à une quinzaine d'année d'intervalle. Le SR-71 présente des formes très courbes, avec le moins d'angles possible, à l'exception de l'arête le long du fuselage. Les entrée d'air sont rondes et larges, écartées du fuselage afin de limiter les inhomogénéités de l'écoulement, et dégagées à l'exception des souris. Les surfaces de contrôle sont imposantes. \`A l'inverse, le F-117 propose des formes très facettées, avec les moins de courbes possible, le dessous de l'avion est plat, les entrées d'air sont très proches du fuselage pour bénéficier du masquage du corps de l'avion, et recouvertes par des grilles, les surfaces de contrôle sont limitées.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{.37\linewidth}
         \centering
-        \begin{subfigure}[b]{.37\linewidth}
-            \centering
-            \includegraphics[width=\textwidth]{images/Lockheed_SR-71_Blackbird.jpg}
-            \caption{SR-71 \textsl{Blackbird}, avion de reconnaissance de la fin des années 60, conçu pour la vitesse \citep{sr71}.}
-            \label{fig:sr71}
-        \end{subfigure}
-        ~
-        \begin{subfigure}[b]{.43\linewidth}
-            \centering
-            \includegraphics[width=\textwidth]{images/F-117_Nighthawk_Front.jpg}
-            \caption{F-117 \textsl{Nighthawk}, avion d'attaque du début de la fin des années 70, conçu pour l'invisibilité RADAR \citep{f117}.}
-            \label{fig:f117}
-        \end{subfigure}
-        \caption[Comparaison d'un avion furtif et d'un avion de vitesse ]{Comparaison de deux avions conçus par Lockheed (Martin), l'un pour la vitesse, l'autre pour la furtivité.}
-        \label{fig:sr71vsf117}
-    \end{figure}
-        
-    Pour cette raison, il est important d'utiliser des approches de conception et d'optimisation multi-physiques afin de restituer au mieux les compromis à effectuer.
-    
-    \paragraph{}
-    Dans la suite de cette partie, je vais présenter en détail les enjeux spécifiques à chacune des deux disciplines.
-
-    
-    \subsubsection{\'Electromagnétisme}
-    
-        \begin{table}[htb]
+        \includegraphics[width=\textwidth]{images/Lockheed_SR-71_Blackbird.jpg}
+        \caption{SR-71 \textsl{Blackbird}, avion de reconnaissance de la fin des années 60, conçu pour la vitesse \citep{sr71}.}
+        \label{fig:sr71}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{.43\linewidth}
         \centering
-        \begin{tabular}{c||cccccc}
-            & Avion de ligne & oiseau & insecte & Rafale & F-16 & F-18\\
-%					\hline
-            SER (m$^2$)&10--100& $\sim$0.01&$10^{-4}$--$10^{-3}$ &0.05--1&$\sim$ 5&0.1--1\\
-            \hline
-            \hline
-                & F-22 & F-35 & J-20 & Su-57& F-117 & B-2 \\
-% 			 		\hline
-            SER (m$^2$)&$\sim$ $10^{-4}$&0.005--0.3&$3\cdot10^{-4}$--0.5&0.1--0.5&$\sim$0.003&$\sim$ $10^{-4}$
-        \end{tabular}
-        \caption[Comparaison de SER d'avions de combats]{Comparaison des SER monostatiques pour plusieurs avions de combats. Il s'agit de SER minimales dans des directions bien choisies, et dans les configurations les plus discrètes possibles (pas d'emports). Selon les configurations et directions d'observation, la SER peut être supérieure de 2 à 3 ordres de grandeur (sources : \textsc{Wikipedia} (différents articles) et \cite{Zikidis2014}).}
-        \label{tab:SERcomp}
-        \end{table}
+        \includegraphics[width=\textwidth]{images/F-117_Nighthawk_Front.jpg}
+        \caption{F-117 \textsl{Nighthawk}, avion d'attaque du début de la fin des années 70, conçu pour l'invisibilité RADAR \citep{f117}.}
+        \label{fig:f117}
+    \end{subfigure}
+    \caption[Comparaison d'un avion furtif et d'un avion de vitesse ]{Comparaison de deux avions conçus par Lockheed (Martin), l'un pour la vitesse, l'autre pour la furtivité.}
+    \label{fig:sr71vsf117}
+\end{figure}
 
-    \nomenclature[S]{SER}{Surface \'Equivalente RADAR}
-    \paragraph{}
-    
-    L'enjeu principal de la conception électromagnétique est de réduire la surface équivalente RADAR (SER, ou RCS en anglais pour RADAR Cross Section) d'un avion. La SER est une mesure de l'énergie rayonnée par l'avion dans une certaine direction. Pour donner un ordre d'idée, la SER de différents appareils actuels ainsi que celle d'un oiseau moyen et d'un insecte moyen sont compilées dans le tableau \ref{tab:SERcomp}. Une SER dix fois supérieure correspond à un avion détectable deux fois plus loin (pour une même bande de fréquence). La SER dépend aussi des différentes bandes de fréquences utilisées allant de quelques dizaines de MHz à une dizaine de GHz, résumées au tableau \ref{tab:radar}.
-    
-    On peut distinguer deux types d'observation. Le premier type est l'observation dite monostatique, lorsque le point d'émission et le point de réception du RADAR sont les mêmes. C'est le type d'observation le plus courant car le plus facile à mettre en \oe uvre. Le second type est l'observation dite bistatique, lorsque le point d'émission et le point d'observation ne sont pas confondus. Ce type d'observation peut être mis en \oe uvre à l'aide de plusieurs RADAR terrestres fixes, d'un RADAR mobile ou encore d'un RADAR aéroporté tel que le système AWACS américain.
-    La figure \ref{fig:illus-SER} illustre de façon schématique la façon dont la SER monostatique peut varier en fonction de la direction et de la bande de fréquence. Sur cet exemple, le chasseur est peu détectable à courte portée par un RADAR situé dans la direction de son axe.
-    
-    \begin{table}[!htb]
-        \adjustbox{max width=\textwidth}{
+Pour cette raison, il est important d'utiliser des approches de conception et d'optimisation multi-physiques afin de restituer au mieux les compromis à effectuer.
+
+\paragraph{}
+Dans la suite de cette partie, je vais présenter en détail les enjeux spécifiques à chacune des deux disciplines.
+
+
+\subsubsection{\'Electromagnétisme}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{c||cccccc}
+                    & Avion de ligne   & oiseau     & insecte              & Rafale   & F-16        & F-18             \\
+        %					\hline
+        SER (m$^2$) & 10--100          & $\sim$0.01 & $10^{-4}$--$10^{-3}$ & 0.05--1  & $\sim$ 5    & 0.1--1           \\
+        \hline
+        \hline
+                    & F-22             & F-35       & J-20                 & Su-57    & F-117       & B-2              \\
+        % 			 		\hline
+        SER (m$^2$) & $\sim$ $10^{-4}$ & 0.005--0.3 & $3\cdot10^{-4}$--0.5 & 0.1--0.5 & $\sim$0.003 & $\sim$ $10^{-4}$
+    \end{tabular}
+    \caption[Comparaison de SER d'avions de combats]{Comparaison des SER monostatiques pour plusieurs avions de combats. Il s'agit de SER minimales dans des directions bien choisies, et dans les configurations les plus discrètes possibles (pas d'emports). Selon les configurations et directions d'observation, la SER peut être supérieure de 2 à 3 ordres de grandeur (sources : \textsc{Wikipedia} (différents articles) et \cite{Zikidis2014}).}
+    \label{tab:SERcomp}
+\end{table}
+
+\nomenclature[S]{SER}{Surface \'Equivalente RADAR}
+\paragraph{}
+
+L'enjeu principal de la conception électromagnétique est de réduire la surface équivalente RADAR (SER, ou RCS en anglais pour RADAR Cross Section) d'un avion. La SER est une mesure de l'énergie rayonnée par l'avion dans une certaine direction. Pour donner un ordre d'idée, la SER de différents appareils actuels ainsi que celle d'un oiseau moyen et d'un insecte moyen sont compilées dans le tableau \ref{tab:SERcomp}. Une SER dix fois supérieure correspond à un avion détectable deux fois plus loin (pour une même bande de fréquence). La SER dépend aussi des différentes bandes de fréquences utilisées allant de quelques dizaines de MHz à une dizaine de GHz, résumées au tableau \ref{tab:radar}.
+
+On peut distinguer deux types d'observation. Le premier type est l'observation dite monostatique, lorsque le point d'émission et le point de réception du RADAR sont les mêmes. C'est le type d'observation le plus courant car le plus facile à mettre en \oe uvre. Le second type est l'observation dite bistatique, lorsque le point d'émission et le point d'observation ne sont pas confondus. Ce type d'observation peut être mis en \oe uvre à l'aide de plusieurs RADAR terrestres fixes, d'un RADAR mobile ou encore d'un RADAR aéroporté tel que le système AWACS américain.
+La figure \ref{fig:illus-SER} illustre de façon schématique la façon dont la SER monostatique peut varier en fonction de la direction et de la bande de fréquence. Sur cet exemple, le chasseur est peu détectable à courte portée par un RADAR situé dans la direction de son axe.
+
+\begin{table}[!htb]
+    \adjustbox{max width=\textwidth}{
         \centering
         \begin{tabular}{c|c|c|l}
-                Nom & \thead{Bande de \\ fréquence} & \thead{longueur \\d'onde} & Utilisation  \\
-                \hline
-                \hline
-                VHF & 50 - 330 MHz & 0.9 - 6 m& Détection très longue portée, pénétration sol \\
-                \hline
-                UHF & 300 - 1 000 MHz & 0.3 - 1 m& Détection très longue portée, pénétration sol et feuillage \\
-                \hline
-                L & 1 - 2 GHz & 15 - 30 cm&Détection longue portée, surveillance aérienne \\
-                \hline
-                S & 2 - 4 GHz & 7.5 - 15 cm&Radar locaux, détection courte portée \\
-                \hline
-                X & 8 - 12 GHz& 2.5 - 3.5 cm&Autodirecteurs de missile, surveillance au sol
-            \end{tabular}
-            }
-        \caption{Présentation des différentes bandes RADAR couramment utilisées en aéronautique.}
-        \label{tab:radar}
-    \end{table}
-    
-    \nomenclature[S]{VHF}{Very High Frequency (très haute fréquence)}
-    \nomenclature[S]{UHF}{Ultra High Frequency (ultra haute fréquence)}
-    
-    Afin de lutter au niveau électromagnétique, on peut distinguer deux approches. L'approche active, ou guerre électronique (electronic warfare), consiste à utiliser des appareils afin de lutter directement contre les émetteurs ou récepteurs RADAR, en les brouillant par exemple. Cette approche ne sera pas abordée ici. La seconde approche, dite passive, consiste à concevoir des matériaux absorbant les ondes RADAR, ou encore des formes géométriques dispersant les ondes RADAR au point de les rendre difficilement détectables, ou au contraire ne renvoyant les ondes que selon un petit nombre de directions privilégiées, considérées comme ayant peu de probabilité de pointer vers un RADAR. Par exemple, sur la figure \ref{fig:f117}, les facettes du fuselage ont tendance à renvoyer les ondes RADAR vers le ciel. C'est le principe des directions poubelles, illustré en figure \ref{fig:dir-poub} \citep{Zikidis2014}. Ce principe est très efficace pour se protéger de l'observation monostatique car il permet de n'être détectable que dans une direction très précise et d'espérer ainsi passer pour du bruit de fond. Il est en revanche peu utile contre une observation bistatique, en particulier lorsque le point d'émission est aéroporté.
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=.75\linewidth]{images/B-2_radar_reflection.jpg}
-        \caption[Illustration du principe de directions poubelles]{Illustration du principe de directions poubelles : les ondes RADAR incidentes sont principalement réfléchies selon selon 4 directions principales et très peu selon les autres \citep{poubelle}.}
-        \label{fig:dir-poub}
-    \end{figure}
+            Nom & \thead{Bande de                                                                             \\ fréquence} & \thead{longueur \\d'onde} & Utilisation  \\
+            \hline
+            \hline
+            VHF & 50 - 330 MHz    & 0.9 - 6 m    & Détection très longue portée, pénétration sol              \\
+            \hline
+            UHF & 300 - 1 000 MHz & 0.3 - 1 m    & Détection très longue portée, pénétration sol et feuillage \\
+            \hline
+            L   & 1 - 2 GHz       & 15 - 30 cm   & Détection longue portée, surveillance aérienne             \\
+            \hline
+            S   & 2 - 4 GHz       & 7.5 - 15 cm  & Radar locaux, détection courte portée                      \\
+            \hline
+            X   & 8 - 12 GHz      & 2.5 - 3.5 cm & Autodirecteurs de missile, surveillance au sol
+        \end{tabular}
+    }
+    \caption{Présentation des différentes bandes RADAR couramment utilisées en aéronautique.}
+    \label{tab:radar}
+\end{table}
 
-    
-    \paragraph{}
-    La conception de forme électromagnétique (NB : on n'abordera pas l'aspect matériaux absorbants) est effectuée principalement avec deux niveaux de modélisation :
-    \begin{itemize}[label=$\bullet$]
-        \item Une modélisation asymptotique orientée Hautes Fréquences (Optique Physique (PO), \textit{Geometric Theory of Diffraction} (GTD) \nomenclature[S]{GTD}{Théorie Géométrique de la Diffraction}, \textit{Physical Theory of Diffraction} (PTD) , … \citep{Pelosi2013}), qui permet une évaluation rapide.
-        \item Une modélisation BEM (Boundary Element Method) par Éléments Finis (Hdiv \citep{Levillain1991}) des équations de Maxwell, qui ne nécessite pas d'approximation des équations. Cepandant,  la discrétisation imposée par le critère de Shannon\footnote{D'après le théorème d'échantillonnage de Shannon, ou théorème de Nyquist-Shannon, un signal peut être reconstruit sans perte d'information si la fréquence d'échantillonnage est supérieure au double de la plus haute fréquence du signal d'origine \citep{Shannon1949}.} limite alors l'exploration en fréquence pour des raisons de place mémoire et de temps de calcul \citep{Abboud2000}. En effet, la taille du maillage nécessaire pour obtenir une précision satisfaisante augmente très vite avec la fréquence de l'onde incidente.
-    \end{itemize}
-    
-    La forme extérieure n'est pas la seule à être dimensionnante. Comme on l'a observé sur la figure \ref{fig:sr71vsf117}, un soin particulier doit aussi être apporté aux entrées d'air et manche à air, ainsi qu'aux sorties de tuyères. Outre la problématique de l'observabilité dans la gamme infra-rouge qui oblige à masquer les jets d'air chaud en sortie des tuyères mais qui ne sera pas abordée ici, l'observation du plan d'entrée compresseur (PEC) dans une gamme RADAR est très dimensionnantes. En effet, il n'est pas possible d'enduire les pales du compresseur d'un matériau absorbant. Enfin, dans le cadre de l'observation monostatique, les ondes réfléchies dans leur directions d'émissions par la manche à air sont aussi très pénalisantes et à limiter absolument.
+\nomenclature[S]{VHF}{Very High Frequency (très haute fréquence)}
+\nomenclature[S]{UHF}{Ultra High Frequency (ultra haute fréquence)}
 
-    \begin{figure}
-        \centering
-        \includegraphics[trim=0 .8cm 0 0, clip,width=.5\linewidth]{images/illustrationSER.png}
-        \caption[Illustration de la SER pour différentes bandes de fréquences]{Estimation de la SER pour différentes bandes de fréquences RADAR et pour une observation d'en dessous (-20\degres), en fonction des directions d'observation pour un F-35 américain. Les zones rouges sont associées à une SER plus élevées, et les zones vertes à une SER plus faibles.\citep{Zikidis2014}.}
-        \label{fig:illus-SER}
-    \end{figure}
-    
-    \subsubsection{Aérodynamique}
-    
-    \paragraph{}
+Afin de lutter au niveau électromagnétique, on peut distinguer deux approches. L'approche active, ou guerre électronique (electronic warfare), consiste à utiliser des appareils afin de lutter directement contre les émetteurs ou récepteurs RADAR, en les brouillant par exemple. Cette approche ne sera pas abordée ici. La seconde approche, dite passive, consiste à concevoir des matériaux absorbant les ondes RADAR, ou encore des formes géométriques dispersant les ondes RADAR au point de les rendre difficilement détectables, ou au contraire ne renvoyant les ondes que selon un petit nombre de directions privilégiées, considérées comme ayant peu de probabilité de pointer vers un RADAR. Par exemple, sur la figure \ref{fig:f117}, les facettes du fuselage ont tendance à renvoyer les ondes RADAR vers le ciel. C'est le principe des directions poubelles, illustré en figure \ref{fig:dir-poub} \citep{Zikidis2014}. Ce principe est très efficace pour se protéger de l'observation monostatique car il permet de n'être détectable que dans une direction très précise et d'espérer ainsi passer pour du bruit de fond. Il est en revanche peu utile contre une observation bistatique, en particulier lorsque le point d'émission est aéroporté.
 
-    
-    L'aspect aérodynamique est bien évidemment fondamental dans le processus de conception d'un avion. Les enjeux qu'il recouvre sont nombreux : réduction de la traînée, maximisation de la portance dans certaines configurations, par exemple au décollage pour permettre l'emport sur porte-avion, optimisation de la finesse aérodynamique, stabilité, man\oe uvrabilité, résistance au décrochage. Le compromis entre ces différents enjeux varient fortement selon les missions de l'avion. Ainsi, pour un avion de transport, on privilégiera la maximisation de sa finesse et une bonne stabilité pour le rendre économique et simple à piloter. \`A l'inverse, pour un avion de combat, on préférera minimiser sa traînée en croisière pour maximiser son rayon d'action, et optimiser sa man\oe uvrabilité, quitte à parfois le rendre instable. De plus, les caractéristiques haute vitesse et basse vitesse ne sont pas toujours compatibles. Par exemple, de bonnes performances à basse vitesse demandent des ailes longues et effilées, sans flèche. Au contraire, de bonnes performances en transsonique ou supersonique impliquent des ailes de faible allongement, à forte flèche.
-    
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.75\linewidth]{images/B-2_radar_reflection.jpg}
+    \caption[Illustration du principe de directions poubelles]{Illustration du principe de directions poubelles : les ondes RADAR incidentes sont principalement réfléchies selon selon 4 directions principales et très peu selon les autres \citep{poubelle}.}
+    \label{fig:dir-poub}
+\end{figure}
+
+
+\paragraph{}
+La conception de forme électromagnétique (NB : on n'abordera pas l'aspect matériaux absorbants) est effectuée principalement avec deux niveaux de modélisation :
+\begin{itemize}[label=$\bullet$]
+    \item Une modélisation asymptotique orientée Hautes Fréquences (Optique Physique (PO), \textit{Geometric Theory of Diffraction} (GTD) \nomenclature[S]{GTD}{Théorie Géométrique de la Diffraction}, \textit{Physical Theory of Diffraction} (PTD) , … \citep{Pelosi2013}), qui permet une évaluation rapide.
+    \item Une modélisation BEM (Boundary Element Method) par Éléments Finis (Hdiv \citep{Levillain1991}) des équations de Maxwell, qui ne nécessite pas d'approximation des équations. Cepandant,  la discrétisation imposée par le critère de Shannon\footnote{D'après le théorème d'échantillonnage de Shannon, ou théorème de Nyquist-Shannon, un signal peut être reconstruit sans perte d'information si la fréquence d'échantillonnage est supérieure au double de la plus haute fréquence du signal d'origine \citep{Shannon1949}.} limite alors l'exploration en fréquence pour des raisons de place mémoire et de temps de calcul \citep{Abboud2000}. En effet, la taille du maillage nécessaire pour obtenir une précision satisfaisante augmente très vite avec la fréquence de l'onde incidente.
+\end{itemize}
+
+La forme extérieure n'est pas la seule à être dimensionnante. Comme on l'a observé sur la figure \ref{fig:sr71vsf117}, un soin particulier doit aussi être apporté aux entrées d'air et manche à air, ainsi qu'aux sorties de tuyères. Outre la problématique de l'observabilité dans la gamme infra-rouge qui oblige à masquer les jets d'air chaud en sortie des tuyères mais qui ne sera pas abordée ici, l'observation du plan d'entrée compresseur (PEC) dans une gamme RADAR est très dimensionnantes. En effet, il n'est pas possible d'enduire les pales du compresseur d'un matériau absorbant. Enfin, dans le cadre de l'observation monostatique, les ondes réfléchies dans leur directions d'émissions par la manche à air sont aussi très pénalisantes et à limiter absolument.
+
+\begin{figure}
+    \centering
+    \includegraphics[trim=0 .8cm 0 0, clip,width=.5\linewidth]{images/illustrationSER.png}
+    \caption[Illustration de la SER pour différentes bandes de fréquences]{Estimation de la SER pour différentes bandes de fréquences RADAR et pour une observation d'en dessous (-20\degres), en fonction des directions d'observation pour un F-35 américain. Les zones rouges sont associées à une SER plus élevées, et les zones vertes à une SER plus faibles.\citep{Zikidis2014}.}
+    \label{fig:illus-SER}
+\end{figure}
+
+\subsubsection{Aérodynamique}
+
+\paragraph{}
+
+
+L'aspect aérodynamique est bien évidemment fondamental dans le processus de conception d'un avion. Les enjeux qu'il recouvre sont nombreux : réduction de la traînée, maximisation de la portance dans certaines configurations, par exemple au décollage pour permettre l'emport sur porte-avion, optimisation de la finesse aérodynamique, stabilité, man\oe uvrabilité, résistance au décrochage. Le compromis entre ces différents enjeux varient fortement selon les missions de l'avion. Ainsi, pour un avion de transport, on privilégiera la maximisation de sa finesse et une bonne stabilité pour le rendre économique et simple à piloter. \`A l'inverse, pour un avion de combat, on préférera minimiser sa traînée en croisière pour maximiser son rayon d'action, et optimiser sa man\oe uvrabilité, quitte à parfois le rendre instable. De plus, les caractéristiques haute vitesse et basse vitesse ne sont pas toujours compatibles. Par exemple, de bonnes performances à basse vitesse demandent des ailes longues et effilées, sans flèche. Au contraire, de bonnes performances en transsonique ou supersonique impliquent des ailes de faible allongement, à forte flèche.
+
 % 			\begin{figure}[htb]
-    \begin{wrapfigure}{r}{.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{images/f18_46.jpg}
-        \caption[Apex d'un F-18]{Photo de l'apex d'un F-18 \textsl{Super Hornet} et du vortex qu'il génère à forte incidence \citep{f18}.}
-        \label{fig:f18}
-% 			\end{figure}
-    \end{wrapfigure}
-    
-    Ces caractéristiques dépendent presque uniquement de la conception de la forme de l'avion, même si le revêtement et des appareils actifs pour le soufflage ou l'aspiration peuvent jouer un rôle dans des situations spécifiques. Par exemple, la forme de l'avant-corps et l'utilisation d'apex d'ailes, comme par exemple sur le chasseur américain F-18F de McDonnell Douglas (voir figure \ref{fig:f18}) a un très gros impact sur la portance à haute incidence, mais aussi sur la man\oe uvrabilité et la stabilité, y compris au-delà du décrochage \citep{Moore1979}.
-    
-    Les avions de combat moderne ont de plus en plus vocation à être des avions multi-rôles. C'est le cas par exemple du Rafale, du Typhoon ou du F-35. Ils doivent donc être performants à la fois pour le combat de supériorité aérienne, l'interception, la reconnaissance, le bombardement au sol, etc. L'exigence de l'interception et du bombardement posent le problème de la super-croisière, c'est à dire de la capacité à voler pendant un temps prolongé à vitesse supersonique (typiquement Mach 1.2 à Mach 1.6 pour les chasseurs modernes) sans post-combustion (qui consomme trop et limiterait le rayon d'action)\footnote{Pour illustrer, on pensera au passage supersonique d'un rafale au dessus de Paris le 30 septembre 2020 afin de porter assistance à un avion de ligne dont les communications étaient tombées en panne, et qui avait effrayé les Parisiens}. Cela nécessite des plans portants étudiés pour être efficaces à vitesse supersonique aussi bien que subsonique, mais aussi de concevoir les entrées d'air en les équipant par exemple de souris mobiles, comme sur le Mirage, de bosse de compression, comme sur le F-35, ou encore de piège, comme sur le F-22. La mission de supériorité impose la superman\oe uvrabilité, c'est à dire la capacité à man\oe uvrer au-delà des limites aérodynamiques de ses gouvernes. Ces man\oe uvres sont possibles (ou théoriquement possibles) pour des avions conçus pour être instables ou équipés de poussée vectorielle. On peut citer en exemple de superman\oe uvres le Cobra de Pougatchev, spécialité des avions Soukhoï (figure \ref{fig:cobra}) ou encore la man\oe uvre de Herbst.
-    
-    \begin{figure}[htb]
-        \centering
-        \includegraphics[width=\linewidth]{images/Su-27_Cobra_2b.png}
-        \caption[Superman\oe uvre : Cobra de Pougatchev]{Schéma de la réalisation du Cobra de Pougatchev par un Su-27 \citep{cobra}.}
-        \label{fig:cobra}
-    \end{figure}
-    
-    \paragraph{Simulation numérique de l'aérodynamique}
-    La conception de forme aérodynamique (NB : on n'abordera pas la partie moteur ni l'aspect contrôle par soufflage ou aspiration) est effectuée principalement avec deux niveaux de modélisation :
-    \begin{itemize}[label=$\bullet$]
-        \item Une modélisation RANS \nomenclature[S]{RANS}{Reynolds Averaged Navier-Stokes : méthode faible précision de résolution des équations de Navier-Stokes (modélisation totale de la turbulence)} (Reynolds Averaged Navier-Stokes), limitée à des écoulements faiblement décollés. La discrétisation spatiale est effectuée par Éléments Finis de Lagrange (P1) conformes. La formulation par Éléments Finis stabilisés de type Galerkin moindre carrés est décrite dans \citep{Hughes1986}, \citep{Chalot2004}.
-        \item Une modélisation DES \nomenclature[S]{DES}{Detached Eddy Simulation : méthode moyenne précision de résolution des équations de Navier-Stokes (modélisation partielle de la turbulence)} (Detached Eddy Simulation \citep{Chalot2015}]) qui mixte les aspects RANS et LES \nomenclature[S]{LES}{Large Eddy Simulation : méthode haute précision de résolution des équations de Navier-Stokes (modélisation limitée de la turbulence)} (Large Eddy Simulation), mais nécessite une discrétisation temporelle précise, ainsi qu'un temps de simulation important (environ 10 fois plus qu'un calcul RANS).
-    \end{itemize}
+\begin{wrapfigure}{r}{.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/f18_46.jpg}
+    \caption[Apex d'un F-18]{Photo de l'apex d'un F-18 \textsl{Super Hornet} et du vortex qu'il génère à forte incidence \citep{f18}.}
+    \label{fig:f18}
+    % 			\end{figure}
+\end{wrapfigure}
 
-    Il existe d'autres méthodes de modélisation numérique pour les écoulements turbulents que la LES, qui consiste à ne modéliser que les plus petites échelles de la turbulence, ou la DNS (Direct Numerical Simulation) qui consiste à résoudre les EDP sans approximation. La LES est encore hors de portée de la plupart des applications industrielles, même si les entreprises avec les plus grosses capacités de calcul commence à l'utiliser de manière anecdotique, quant à la DNS, elle reste cantonnée à la résolution de formes géométriques simples et de petite dimension, y compris dans le monde de la recherche académique.
-    
-    % \paragraph{}
-    % Bien que la MDAO (\textit{MultiDisciplinary Analysis and Optimization}) dans un cadre industriel soit le sujet de nombreux projets et d'études, la conception de forme aérodynamique et la conception de forme électromagnétique restent souvent réalisées en boucle ouverte. C'est-à-dire que les deux optimisations se font de manière indépendante, en prenant en compte les exigences de l'autre domaine en tant que contraintes d'optimisation. Des compromis sont ensuite trouvés entre les designs obtenus par chaque boucle d'optimisation. Certains auteurs \citep{Zhou2020} ont entrepris d'intégrer les deux aspects dans une même boucle de design préliminaire.
+Ces caractéristiques dépendent presque uniquement de la conception de la forme de l'avion, même si le revêtement et des appareils actifs pour le soufflage ou l'aspiration peuvent jouer un rôle dans des situations spécifiques. Par exemple, la forme de l'avant-corps et l'utilisation d'apex d'ailes, comme par exemple sur le chasseur américain F-18F de McDonnell Douglas (voir figure \ref{fig:f18}) a un très gros impact sur la portance à haute incidence, mais aussi sur la man\oe uvrabilité et la stabilité, y compris au-delà du décrochage \citep{Moore1979}.
 
-    \subsection{Méthode des \'Elements Frontières}
-    
-    Une méthode à onde complète résout numériquement les équations de Maxwell, sans aucune hypothèse physique préalable.  
-    La méthode des éléments de frontière (BEM), parfois appelée méthode des moments (MoM), est l'une des trois principales méthodes à onde complète, avec la méthode des éléments finis (FEM) et la  méthode des différences finies dans le domaine temporel (Finite Differences Time Domain, FDTD. Voir par exemple \cite{Teixeira2023}). Les techniques à onde complète peuvent être très précises et reposent sur la discrétisation d'une quantité inconnue. Par exemple, dans le cas de la BEM, la distribution du courant, généralement la distribution du courant de surface, est discrétisée en segments ou en patchs, dont les interactions sont représentées par une matrice, calculée à l'aide de la fonction de Green du problème. Cela permet de ne discrétiser que la surface plutôt que l'ensemble du domaine volumique, mais au prix d'une matrice alors très dense. Avec les conditions aux limites pertinentes, cela donne un ensemble d'équations linéaires dont la solution est le courant sur chaque segment (arêtes du maillage) ou patch. De plus, la condition aux limites de rayonnement est intégrée dans la méthode BEM, ce qui signifie qu'elle décrit avec précision le champ lointain et qu'aucun traitement spécial n'est nécessaire pour gérer un domaine non borné, ce qui la rend idéale pour les problèmes de SER tels que celui de cette étude. Ce n'est pas le cas pour la FEM ou la FDTD.
-    
-    Cependant, la méthode BEM ne traite pas efficacement les matériaux qui ne sont pas des conducteurs électriques parfaits (PEC), en particulier s'ils ne sont pas homogènes, par rapport aux méthodes FDTD ou FEM, bien que cela puisse être contourné en appliquant une pénalité locale sur l'impédance du matériau. Dans le cas d'un matériau non homogène, un maillage volumique est nécessaire, ce qui nuit considérablement à l'efficacité de la méthode. Cependant, les matériaux non électriquement parfaits dépassent le cadre de cette étude.
-    
-    Naturellement, la précision de la méthode dépend de la finesse de la discrétisation. En général, pour la méthode BEM, on utilise une taille de maille d'environ $\lambda/10$ à $\lambda/5$, où $\lambda$ est la longueur d'onde. Cela signifie que la méthode BEM s'adapte mal à l'augmentation des fréquences, avec un $\mathcal{O}\left(f^6\right)$, $f$ étant la fréquence ($\mathcal{O}\left(f^9\right)$ dans le cas d'un maillage volumique. \citep{Davidson2010}) ! Cela limite considérablement la gamme de fréquences calculables avec cette méthode, en particulier dans un cadre d'optimisation.
-    
-    Pour une discussion plus approfondie sur les différentes méthodes à onde complète, leurs limites et leurs comparaisons entre elles, voir \cite{Davidson2010}.
-    
+Les avions de combat moderne ont de plus en plus vocation à être des avions multi-rôles. C'est le cas par exemple du Rafale, du Typhoon ou du F-35. Ils doivent donc être performants à la fois pour le combat de supériorité aérienne, l'interception, la reconnaissance, le bombardement au sol, etc. L'exigence de l'interception et du bombardement posent le problème de la super-croisière, c'est à dire de la capacité à voler pendant un temps prolongé à vitesse supersonique (typiquement Mach 1.2 à Mach 1.6 pour les chasseurs modernes) sans post-combustion (qui consomme trop et limiterait le rayon d'action)\footnote{Pour illustrer, on pensera au passage supersonique d'un rafale au dessus de Paris le 30 septembre 2020 afin de porter assistance à un avion de ligne dont les communications étaient tombées en panne, et qui avait effrayé les Parisiens}. Cela nécessite des plans portants étudiés pour être efficaces à vitesse supersonique aussi bien que subsonique, mais aussi de concevoir les entrées d'air en les équipant par exemple de souris mobiles, comme sur le Mirage, de bosse de compression, comme sur le F-35, ou encore de piège, comme sur le F-22. La mission de supériorité impose la superman\oe uvrabilité, c'est à dire la capacité à man\oe uvrer au-delà des limites aérodynamiques de ses gouvernes. Ces man\oe uvres sont possibles (ou théoriquement possibles) pour des avions conçus pour être instables ou équipés de poussée vectorielle. On peut citer en exemple de superman\oe uvres le Cobra de Pougatchev, spécialité des avions Soukhoï (figure \ref{fig:cobra}) ou encore la man\oe uvre de Herbst.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{images/Su-27_Cobra_2b.png}
+    \caption[Superman\oe uvre : Cobra de Pougatchev]{Schéma de la réalisation du Cobra de Pougatchev par un Su-27 \citep{cobra}.}
+    \label{fig:cobra}
+\end{figure}
+
+\paragraph{Simulation numérique de l'aérodynamique}
+La conception de forme aérodynamique (NB : on n'abordera pas la partie moteur ni l'aspect contrôle par soufflage ou aspiration) est effectuée principalement avec deux niveaux de modélisation :
+\begin{itemize}[label=$\bullet$]
+    \item Une modélisation RANS \nomenclature[S]{RANS}{Reynolds Averaged Navier-Stokes : méthode faible précision de résolution des équations de Navier-Stokes (modélisation totale de la turbulence)} (Reynolds Averaged Navier-Stokes), limitée à des écoulements faiblement décollés. La discrétisation spatiale est effectuée par Éléments Finis de Lagrange (P1) conformes. La formulation par Éléments Finis stabilisés de type Galerkin moindre carrés est décrite dans \citep{Hughes1986}, \citep{Chalot2004}.
+    \item Une modélisation DES \nomenclature[S]{DES}{Detached Eddy Simulation : méthode moyenne précision de résolution des équations de Navier-Stokes (modélisation partielle de la turbulence)} (Detached Eddy Simulation \citep{Chalot2015}]) qui mixte les aspects RANS et LES \nomenclature[S]{LES}{Large Eddy Simulation : méthode haute précision de résolution des équations de Navier-Stokes (modélisation limitée de la turbulence)} (Large Eddy Simulation), mais nécessite une discrétisation temporelle précise, ainsi qu'un temps de simulation important (environ 10 fois plus qu'un calcul RANS).
+\end{itemize}
+
+Il existe d'autres méthodes de modélisation numérique pour les écoulements turbulents que la LES, qui consiste à ne modéliser que les plus petites échelles de la turbulence, ou la DNS (Direct Numerical Simulation) qui consiste à résoudre les EDP sans approximation. La LES est encore hors de portée de la plupart des applications industrielles, même si les entreprises avec les plus grosses capacités de calcul commence à l'utiliser de manière anecdotique, quant à la DNS, elle reste cantonnée à la résolution de formes géométriques simples et de petite dimension, y compris dans le monde de la recherche académique.
+
+% \paragraph{}
+% Bien que la MDAO (\textit{MultiDisciplinary Analysis and Optimization}) dans un cadre industriel soit le sujet de nombreux projets et d'études, la conception de forme aérodynamique et la conception de forme électromagnétique restent souvent réalisées en boucle ouverte. C'est-à-dire que les deux optimisations se font de manière indépendante, en prenant en compte les exigences de l'autre domaine en tant que contraintes d'optimisation. Des compromis sont ensuite trouvés entre les designs obtenus par chaque boucle d'optimisation. Certains auteurs \citep{Zhou2020} ont entrepris d'intégrer les deux aspects dans une même boucle de design préliminaire.
+
+\subsection{Méthode des \'Elements Frontières}
+
+Une méthode à onde complète résout numériquement les équations de Maxwell, sans aucune hypothèse physique préalable.
+La méthode des éléments de frontière (BEM), parfois appelée méthode des moments (MoM), est l'une des trois principales méthodes à onde complète, avec la méthode des éléments finis (FEM) et la  méthode des différences finies dans le domaine temporel (Finite Differences Time Domain, FDTD. Voir par exemple \cite{Teixeira2023}). Les techniques à onde complète peuvent être très précises et reposent sur la discrétisation d'une quantité inconnue. Par exemple, dans le cas de la BEM, la distribution du courant, généralement la distribution du courant de surface, est discrétisée en segments ou en patchs, dont les interactions sont représentées par une matrice, calculée à l'aide de la fonction de Green du problème. Cela permet de ne discrétiser que la surface plutôt que l'ensemble du domaine volumique, mais au prix d'une matrice alors très dense. Avec les conditions aux limites pertinentes, cela donne un ensemble d'équations linéaires dont la solution est le courant sur chaque segment (arêtes du maillage) ou patch. De plus, la condition aux limites de rayonnement est intégrée dans la méthode BEM, ce qui signifie qu'elle décrit avec précision le champ lointain et qu'aucun traitement spécial n'est nécessaire pour gérer un domaine non borné, ce qui la rend idéale pour les problèmes de SER tels que celui de cette étude. Ce n'est pas le cas pour la FEM ou la FDTD.
+
+Cependant, la méthode BEM ne traite pas efficacement les matériaux qui ne sont pas des conducteurs électriques parfaits (PEC), en particulier s'ils ne sont pas homogènes, par rapport aux méthodes FDTD ou FEM, bien que cela puisse être contourné en appliquant une pénalité locale sur l'impédance du matériau. Dans le cas d'un matériau non homogène, un maillage volumique est nécessaire, ce qui nuit considérablement à l'efficacité de la méthode. Cependant, les matériaux non électriquement parfaits dépassent le cadre de cette étude.
+
+Naturellement, la précision de la méthode dépend de la finesse de la discrétisation. En général, pour la méthode BEM, on utilise une taille de maille d'environ $\lambda/10$ à $\lambda/5$, où $\lambda$ est la longueur d'onde. Cela signifie que la méthode BEM s'adapte mal à l'augmentation des fréquences, avec un $\mathcal{O}\left(f^6\right)$, $f$ étant la fréquence ($\mathcal{O}\left(f^9\right)$ dans le cas d'un maillage volumique. \citep{Davidson2010}) ! Cela limite considérablement la gamme de fréquences calculables avec cette méthode, en particulier dans un cadre d'optimisation.
+
+Pour une discussion plus approfondie sur les différentes méthodes à onde complète, leurs limites et leurs comparaisons entre elles, voir \cite{Davidson2010}.
+
 
 Pour pallier le coût computationnel élevé de la BEM, notamment dû à la manipulation de matrices denses de grande taille, plusieurs méthodes d'accélération ont été développées. Parmi les plus efficaces, la méthode de compression adaptative croisée (ACA) permet d'approximer les blocs de la matrice d'interaction par des matrices de faible rang, réduisant ainsi significativement la mémoire nécessaire et le temps de calcul, sans perte notable de précision~\citep{Bebendorf2000}. Une autre approche majeure est la Fast Multipole Method (FMM), qui accélère le calcul des interactions lointaines en regroupant les sources et en utilisant des développements multipolaires, ce qui permet de ramener la complexité du calcul matriciel de $\mathcal{O}(N^2)$ à $\mathcal{O}(N\log N)$ \citep{Greengard1988}. Ces techniques sont aujourd'hui incontournables pour rendre la BEM applicable à des problèmes de grande taille en électromagnétisme ou en acoustique.
 
@@ -177,9 +177,8 @@ Les algorithmes évolutionnaires, tels que les algorithmes génétiques (GA), Di
 
 COBYLA (Constrained Optimization BY Linear Approximations) \citep{Powell1994} est un algorithme sans gradient qui gère les contraintes non linéaires en construisant des approximations linéaires locales de la fonction objectif et des contraintes. Il est efficace pour des problèmes de petite à moyenne dimension, mais sa performance se dégrade rapidement lorsque le nombre de variables augmente, et il peut avoir du mal à satisfaire précisément les contraintes complexes. COBYQA (Constrained Optimization BY Quadratic Approximations) \citep{Ragonneau2022,Ragonneau2024} est une extension qui utilise des modèles quadratiques pour améliorer la précision, mais elle reste limitée par la dimension du problème et la qualité de l'approximation locale.
 
-\todo{ A verifier
 Cependant, si les méthodes sans gradient sont précieuses pour des problèmes de faible dimension ou lorsque le gradient est indisponible, elles deviennent rapidement inefficaces en grande dimension, notamment à cause de la malédiction de la dimensionnalité et de la difficulté à satisfaire des contraintes complexes. Les algorithmes surrogate-based sont quant à eux connus pour avoir des difficultés à gérer les contraintes, les satisfaisant avec une faible précision et peinant à respecter les critères d'arrêt \citep{Parr2010}. Pour les problèmes industriels à grand nombre de variables et à fortes contraintes, les méthodes basées sur le gradient sont incontournables.
-}
+
 
 \subsubsection{Optimisation par gradient}
 
@@ -188,22 +187,23 @@ Les méthodes basées sur le gradient nécessitent généralement beaucoup moins
 \begin{figure}
     \centering
     \includegraphics[width=.75\textwidth]{images/lyu2014.png}
-    \caption[Comparaison de l'évolution du nombre d'évaluations de la fonction objectif en fonction du nombre de paramètres d'optimisation pour différents algorithmes d'optimisation avec et sans gradient]{Comparaison de l'évolution du nombre d'évaluations de la fonction objectif en fonction du nombre de paramètres d'optimisation pour différents algorithmes d'optimisation avec et sans gradient. Les méthodes sans gradient nécessite un nombre prohibitf d'évalutations pour de grands nombres de paramêtres. Image extraite de \cite{Lyu2014} (Figure 3).}
+    \caption[Comparaison de l'évolution du nombre d'évaluations de la fonction objectif en fonction du nombre de paramètres d'optimisation pour différents algorithmes d'optimisation avec et sans gradient]{Comparaison de l'évolution du nombre d'évaluations de la fonction objectif en fonction du nombre de paramètres d'optimisation pour différents algorithmes d'optimisation avec et sans gradient. Les méthodes sans gradient nécessite un nombre prohibitif d'évaluations pour de grands nombres de paramètres. Image extraite de \cite{Lyu2014} (Figure 3).}
     \label{fig:gradient-vs-non-gradient}
 \end{figure}
 
-La formulation adjointe du problème d'optimisation (voir \cite{Lions1968}% ou \cite{Mohammadi2009}
-) permet un calcul efficace du gradient de l'objectif et des contraintes par rapport aux paramètres d'optimisation. Pour les applications de cette étude, le coût de la dérivation du gradient est à peu près linéaire par rapport au nombre de variables de conception et à la taille du maillage. Diverses publications traitent déjà de l'application de la méthode adjointe à l'optimisation basée sur le gradient. Par exemple, L. Martin a appliqué la méthode adjointe à l'optimisation robuste des profils aérodynamiques \citep{Martin2010}. L. Martin a utilisé l'outil de différenciation automatique (AD) TAPENADE \citep{Hascoet2013} pour développer son solveur adjoint discret. Lyu et al. ont appliqué leur propre solveur adjoint à l'optimisation d'un avion à fuselage intégré \citep{Lyu2014a} et à l'aile de recherche commune \citep{Lyu2015}.
+La formulation adjointe du problème d'optimisation (voir \cite{Lions1968} ou encore \cite{Mohammadi2009}) permet un calcul efficace du gradient de l'objectif et des contraintes par rapport aux paramètres d'optimisation. Pour les applications de cette étude, le coût de la dérivation du gradient est à peu près linéaire par rapport au nombre de variables de conception et à la taille du maillage. Diverses publications traitent déjà de l'application de la méthode adjointe à l'optimisation basée sur le gradient. Par exemple, L. Martin a appliqué la méthode adjointe à l'optimisation robuste des profils aérodynamiques \citep{Martin2010}. L. Martin a utilisé l'outil de différenciation automatique (AD) TAPENADE \citep{Hascoet2013} pour développer son solveur adjoint discret. Lyu et al. ont appliqué leur propre solveur adjoint à l'optimisation d'un avion à fuselage intégré \citep{Lyu2014a} et à l'aile de recherche commune \citep{Lyu2015}.
 
 Cependant, les algorithmes basés sur les gradients ont une probabilité plus faible de converger vers un minimum global que vers un minimum local, contrairement aux algorithmes globaux sans gradient, mais sont très sensibles au point de départ dans le cas où la surface de réponse dans l'espace de conception est multimodale. Lorsque l'optimisation de la forme aérodynamique est multimodale \citep{Bons2019}, cela rend les algorithmes basés sur le gradient inefficaces pour explorer des conceptions inhabituelles mais potentiellement révolutionnaires. Dans un cadre industriel, cette difficulté est résolue par un va-et-vient entre la phase de conception initiale, où des algorithmes globaux sont utilisés en conjonction avec des méthodes de moindre fidélité afin de sélectionner un nombre limité de conceptions intéressantes, qui sont ensuite étudiées plus en détail pendant la phase de conception préliminaire à l'aide d'une méthode de plus grande fidélité et d'algorithmes d'optimisation locaux basés sur le gradient. Dans ce travail, nous étudierons un cas d'utilisation représentatif de la phase de conception préliminaire.
 
-\subsubsection[SLSQP]{L'algorithme Sequential Least-Square Quadratic Programing}
+\subsubsection[SLSQP]{L'algorithme Sequential Least-Square Quadratic Programming}
 
 Les méthodes d'optimisation par descente de gradient constituent la classe d'algorithmes la plus utilisée pour la résolution de problèmes d'optimisation non linéaire, en particulier lorsque le nombre de variables de conception est élevé et que le calcul du gradient est possible, soit analytiquement, soit numériquement. Ces méthodes reposent sur l'utilisation de l'information de gradient pour guider la recherche du minimum, ce qui leur confère une efficacité supérieure aux méthodes sans gradient, notamment en termes de nombre d'évaluations de la fonction objectif.
 
 Parmi les algorithmes les plus répandus, on distingue les méthodes de type quasi-Newton, qui construisent une approximation de la matrice Hessienne (matrice des dérivées secondes) pour accélérer la convergence. L'algorithme L-BFGS-B (Limited-memory Broyden-Fletcher-Goldfarb-Shanno with Bounds, voir \cite{Byrd1995,Zhu1995}) est une variante particulièrement adaptée aux problèmes de grande dimension, car il ne stocke qu'une approximation réduite de la Hessienne, ce qui limite la consommation mémoire. L-BFGS-B gère également les contraintes de bornes sur les variables, ce qui le rend pertinent pour de nombreux problèmes d'ingénierie où les paramètres sont physiquement limités. Il est largement utilisé dans l'optimisation de formes, l'apprentissage automatique et la mécanique numérique.
 
-L'algorithme SLSQP (Sequential Least Squares Quadratic Programming, voir \cite{Kraft1988}) est une méthode de programmation quadratique séquentielle qui résout à chaque itération un problème quadratique approché du problème original, en tenant compte à la fois des contraintes d'égalité et d'inégalité. SLSQP est particulièrement apprécié pour sa capacité à gérer des contraintes non linéaires complexes et à fournir des solutions précises même en présence de nombreuses contraintes. Il est implémenté dans de nombreux solveurs d'optimisation (par exemple, dans SciPy ou NLopt) et s'avère robuste pour des applications industrielles, notamment en conception de formes et en optimisation multi-physique.
+Deux familles d'algorithmes sont particulièrement utilisées pour résoudre des problème d'optimisation par descente de gradient avec des contraintes. Les méthodes de point intérieur (IPA pour Interior-Point Algorithms, voir par exemple \cite{Herskovits2004}) traitent les contraintes en ajoutant une fonction barrière pénalisant fortement le voisinage des contraintes, explorant donc en priorité l'intérieur du domaine admissible. Les méthodes d'optimisation quadratique successive (SQP pour Sequential Quadratic Programming, voir par exemple \cite{Tits2008}) résolvent quant à elles à chaque itération un problème quadratique approché du problème original, en tenant compte à la fois des contraintes d'égalité et d'inégalité. \'Etant donnée la taille du problème, le nombre de contraintes et le besoin de précision sur la solution, les algorithmes de la famille SQP nous semblent plus adaptés.
+
+L'algorithme SLSQP (Sequential Least Squares Quadratic Programming, voir \cite{Kraft1988}) est particulièrement apprécié pour sa capacité à gérer des contraintes non linéaires complexes et à fournir des solutions précises même en présence de nombreuses contraintes. Il est implémenté dans de nombreux solveurs d'optimisation (par exemple, dans SciPy ou NLopt) et s'avère robuste pour des applications industrielles, notamment en conception de formes et en optimisation multi-physique.
 
 D'autres algorithmes de descente de gradient existent, tels que la méthode du gradient conjugué, adaptée aux problèmes quadratiques de grande taille, ou les méthodes de Newton et quasi-Newton classiques (BFGS, DFP), qui offrent une convergence rapide mais nécessitent le calcul ou l'approximation de la Hessienne. Le choix de l'algorithme dépend du problème considéré, de la taille de l'espace de conception, de la présence de contraintes et de la disponibilité du gradient.
 
@@ -228,17 +228,17 @@ L'optimisation conjointe des performances aérodynamiques et de la furtivité ra
 Face à cette complexité, de nombreux travaux ont exploré des stratégies d'optimisation multi-objectif, en s'appuyant principalement sur des algorithmes sans gradient. Ces méthodes, telles que les algorithmes génétiques ou les stratégies évolutionnaires, permettent d'explorer efficacement des espaces de conception et de générer des fronts de Pareto illustrant les compromis possibles entre traînée et SER.
 Certaines études, telles que \citep{Aliaga2022}, traitent des effets contradictoires de la forme sur l'efficacité aérodynamique et la furtivité, mais peu d'entre elles utilisent des méthodes d'optimisation aérodynamique et furtive intégrées. Parmi celles-ci, Lee et al.~\citep{Lee2007} ont utilisé un algorithme évolutif robuste pour la conception de la forme et des sections des ailes. Afin d'atténuer le coût de calcul élevé dû au nombre d'évaluations de la fonction objective générées par l'algorithme évolutif, ils ont utilisé un solveur de flux potentiel et d'optique physique. Plus tard, Wu et al.~\citep{Wu2014} ont utilisé la méthode du métamodèle adaptatif afin d'optimiser une aile à fort allongement pour l'aérodynamique, la furtivité et la structure, tandis que Jiang et al.~ont étudié l'optimisation aérodynamique et furtive du rotor d'hélicoptère à l'aide de la méthode de conception intégrée combinée au modèle de substitution par fonctions de base radiales. Ils ont utilisé le solveur RANS (Reynolds-Averaged Navier-Stokes), la méthode FVTD (Finite Volume Time Domain) et la méthode des bords de panneau \citep{Jiang2015}, puis la méthode de conception factorielle complète en combinaison avec des fonctions de base radiales \citep{Jiang2016} pour évaluer et optimiser les caractéristiques aérodynamiques et furtives du rotor d'hélicoptère.
 
-Papageorgiou et al~\citep{Papageorgiou2018} ont appliqué un cadre multidisciplinaire d'optimisation de la conception pour concevoir des drones. Leurs travaux d'optimisation ont pris en compte la signature radar, les exigences de performance des capteurs et la trajectoire de vol. Leurs résultats ont montré que la mise en œuvre de contraintes de trajectoire dans l'optimisation pouvait permettre d'obtenir des conceptions améliorées de 12 à 25 \% par rapport aux formulations « traditionnelles » du problème. Garnier et al.~\citep{Garnier2020} ont utilisé un algorithme basé sur le couplage de l'algorithme génétique NSGA-II et d'une approche d'optimisation globale efficace multi-objectifs \citep{Guerra2016} pour optimiser la forme d'un drone de combat sans pilote (UCAV) en termes d'aérodynamique furtive. D'autres auteurs, comme Liu et al.~\citep{Liu2021}, ont eu recours à des modèles de krigeage hiérarchique et à des modèles de substitution pour accélérer l'optimisation de la furtivité aérodynamique d'un avion à aile volante. Zhou et Huang~\citep{Zhou2023} ont proposé un algorithme de recherche à deux particules pour optimiser la furtivité d'une dérive, tandis que Taj et al.~\citep{Taj2023} ont combiné régression par processus gaussien et algorithmes génétiques pour explorer le compromis entre traînée et SER sur un avion de chasse.
+Papageorgiou et al~\citep{Papageorgiou2018} ont appliqué un cadre multidisciplinaire d'optimisation de la conception pour concevoir des drones. Leurs travaux d'optimisation ont pris en compte la signature radar, les exigences de performance des capteurs et la trajectoire de vol. Leurs résultats ont montré que la mise en œuvre de contraintes de trajectoire dans l'optimisation pouvait permettre d'obtenir des conceptions améliorées de 12 à 25 \% par rapport aux formulations « traditionnelles » du problème. Garnier et al.~\citep{Garnier2020} ont mis en place d'une approche d'optimisation globale efficace multi-objectifs à l'aide de l'algorithme génétique NSGA-II et  \citep{Guerra2016} pour optimiser la forme d'un drone de combat sans pilote (UCAV) en termes d'aérodynamique furtive. D'autres auteurs, comme Liu et al.~\citep{Liu2021}, ont eu recours à des modèles de krigeage hiérarchique et à des modèles de substitution pour accélérer l'optimisation de la furtivité aérodynamique d'un avion à aile volante. Zhou et Huang~\citep{Zhou2023} ont proposé un algorithme de recherche à deux particules pour optimiser la furtivité d'une dérive, tandis que Taj et al.~\citep{Taj2023} ont combiné régression par processus gaussien et algorithmes génétiques pour explorer le compromis entre traînée et SER sur un avion de chasse.
 
-Ces approches sans gradient présentent l'avantage de ne pas nécessiter de calcul analytique du gradient. Toutefois, elles souffrent d'une convergence lente et d'une forte dépendance au nombre d'évaluations de la fonction objectif, ce qui limite leur applicabilité à des modèles de substitution ou à des méthodes de faible fidélité. De plus, la qualité des solutions obtenues dépend fortement de la représentativité des modèles utilisés et de la capacité à intégrer des contraintes industrielles réalistes. Enfin, les algorithmes surrogate-based sont connus pour avoir des difficultés à gérer les contraintes, les satisfaisant avec une faible précision et peinant à respecter les critères d'arrêt \citep{Parr2010}. 
+Ces approches sans gradient présentent l'avantage de ne pas nécessiter de calcul analytique du gradient. Toutefois, elles souffrent d'une convergence lente et d'une forte dépendance au nombre d'évaluations de la fonction objectif, ce qui limite leur applicabilité à des modèles de substitution ou à des méthodes de faible fidélité. De plus, la qualité des solutions obtenues dépend fortement de la représentativité des modèles utilisés et de la capacité à intégrer des contraintes industrielles réalistes. Enfin, les algorithmes surrogate-based sont connus pour avoir des difficultés à gérer les contraintes, les satisfaisant avec une faible précision et peinant à respecter les critères d'arrêt \citep{Parr2010}.
 
-À l'inverse, les méthodes d'optimisation basées sur le gradient, bien que moins répandues dans ce domaine, offrent un potentiel considérable pour l'optimisation de formes à haute fidélité. Pan et al.~\citep{Pan2017} ont ainsi réalisé une optimisation aérodynamique furtive basée sur le gradient, en combinant modélisation paramétrique et calcul analytique des gradients pour piloter la forme d'un avion du type aile volante. Li et al~\citep{Li2019} ont utilisé une approche similaire, en alternant critères aérodynamiques et furtifs comme objectif et contrainte, et ont montré que le meilleur compromis est obtenu en intégrant les deux aspects dans une fonction objective unique. 
+À l'inverse, les méthodes d'optimisation basées sur le gradient, bien que moins répandues dans ce domaine, offrent un potentiel considérable pour l'optimisation de formes à haute fidélité. Pan et al.~\citep{Pan2017} ont ainsi réalisé une optimisation aérodynamique furtive basée sur le gradient, en combinant modélisation paramétrique et calcul analytique des gradients pour piloter la forme d'un avion du type aile volante. Li et al~\citep{Li2019} ont utilisé une approche similaire, en alternant critères aérodynamiques et furtifs comme objectif et contrainte, et ont montré que le meilleur compromis est obtenu en intégrant les deux aspects dans une fonction objective unique.
 
 \section{Contributions}
 
 Ce travail s'inscrit dans une démarche d'innovation méthodologique et numérique pour l'optimisation de formes d'avions furtifs, en s'appuyant sur des outils adaptés au contexte industriel et sur des méthodes de calcul avancées. Les contributions principales, détaillées dans les chapitres~\ref{ch:chapter2} et~\ref{ch:chapter3}, s'articulent autour de plusieurs axes complémentaires qui répondent aux enjeux de la conception multi-physique et de l'optimisation à haute fidélité.
 
-Tout d'abord, une contribution majeure réside dans la mise en place d'un cadre d'optimisation multi-objectif, capable d'explorer efficacement les compromis entre performances aérodynamiques et furtivité radar. Ce cadre s'appuie sur l'utilisation conjointe d'un modeleur CAO interne (GANIMEDE~\citep{Kleinveld2008}), d'un solveur RANS~\citep{Chalot2004} pour l'aérodynamique, d'un solveur d'optique physique pour la SER, et de l'algorithme SLSQP~\citep{Barclay1999} pour l'optimisation. 
+Tout d'abord, une contribution majeure réside dans la mise en place d'un cadre d'optimisation multi-objectif, capable d'explorer efficacement les compromis entre performances aérodynamiques et furtivité radar. Ce cadre s'appuie sur l'utilisation conjointe d'un modeleur CAO interne (GANIMEDE~\citep{Kleinveld2008}), d'un solveur RANS~\citep{Chalot2004} pour l'aérodynamique, d'un solveur d'optique physique pour la SER, et de l'algorithme SLSQP~\citep{Barclay1999} pour l'optimisation.
 % L'approche adoptée permet de travailler sur des formes réalistes, avec un nombre réduit de variables de conception pertinentes pour l'industrie, tout en intégrant des contraintes géométriques complexes. L'utilisation de la CAO, plutôt qu'une méthode de déformation libre, a permis de garantir la généricité et la robustesse des formes générées, tout en facilitant la communication entre disciplines et la reproductibilité des résultats.
 
 Un point notable de ce travail réside dans le choix d'utiliser un modeleur CAO interne pour la génération et la manipulation des géométries. Ce choix présente de nombreux avantages par rapport aux approches free-form deformation (FFD) souvent rencontrées dans la littérature. La CAO permet de paramétrer la géométrie à l'aide de variables indépendantes, directement interprétables par les ingénieurs et concepteurs, ce qui facilite la définition de contraintes géométriques pertinentes (surface de référence, volume, épaisseur, etc.) et la génération de formes réalistes. Contrairement à la free-form deformation, qui peut conduire à des géométries non physiques ou difficilement exploitables industriellement, la CAO garantit la robustesse et la validité des formes générées tout au long du processus d'optimisation.
@@ -248,7 +248,7 @@ Le chapitre~\ref{ch:chapter2} présente en détail l'application de ce cadre à 
 
 Une autre contribution essentielle, développée au chapitre~\ref{ch:chapter3}, concerne l'extension de la démarche à l'optimisation par adjoint BEM en 3D. Ce travail, encore peu exploré dans la littérature, a nécessité la mise en œuvre d'une formulation adjointe spécifique pour la méthode des éléments de frontière, ainsi que l'intégration d'outils de différentiation automatique (TAPENADE~\citep{Hascoet2013}) pour le calcul des gradients. Malgré l'absence d'un terme dans la formulation de l'adjoint, l'approche a permis de réduire la fonction coût de manière significative, démontrant ainsi son intérêt industriel. L'étude a également mis en évidence les limites actuelles de la méthode, notamment la convergence parfois difficile due à l'utilisation d'une seule fréquence de calcul pour la SER et à la complexité des géométries traitées. Néanmoins, le gain de performance obtenu par rapport à la méthode des différences finies pour le calcul du gradient ouvre des perspectives prometteuses pour l'optimisation de formes complexes à haute fidélité.
 
-L'ensemble de ces contributions s'accompagne d'une réflexion sur l'intégration des outils de simulation, d'optimisation et de CAO dans le processus de conception industrielle. Le travail réalisé montre qu'il est possible, grâce à une chaîne numérique cohérente et à des choix méthodologiques adaptés, d'aborder des problèmes multi-physiques de grande dimensionnalité, tout en maintenant des temps de calcul compatibles avec les contraintes industrielles. Les résultats obtenus illustrent la pertinence de l'approche pour explorer des compromis de conception, identifier des solutions innovantes et accélérer l'innovation dans le domaine de l'aéro-furtivité.
+L'ensemble de ces contributions s'accompagne d'une réflexion sur l'intégration des outils de simulation, d'optimisation et de CAO dans le processus de conception industrielle. Le travail réalisé montre qu'il est possible, grâce à une chaîne numérique cohérente et à des choix méthodologiques adaptés, d'aborder des problèmes multi-physiques de grande dimensionnalité, tout en maintenant des temps de calcul compatibles avec les contraintes industrielles. Les résultats obtenus illustrent la pertinence de l'approche pour explorer des compromis de conception, identifier des solutions innovantes et accélérer l'innovation dans le domaine de l'aéro-furtivité. En partenariat avec Dassault, NTUA a adapté cette démarche d'optimisation disciplinaire avec un modeleur CAD à un framework d'optimisation aérostructure haute fidélité et multidisciplinaire d'une forme de type business jet \citep{Tsiakas2024}.
 
 Enfin, ce travail pose les bases d'une nouvelle génération d'outils et de méthodes pour l'optimisation multi-physique de formes d'avions, en ouvrant la voie à des développements futurs : amélioration des formulations adjointes, prise en compte de cas multifréquences, intégration de modèles de plus haute fidélité (par exemple en utilisant une simulation DES pour l'aérodynamique), et extension à d'autres disciplines telles que l'acoustique ou la thermique. Ces perspectives permettront de renforcer encore l'impact industriel et scientifique de la démarche proposée.
 
