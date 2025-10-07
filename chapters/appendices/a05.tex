@@ -392,23 +392,17 @@ Puisque $\vect{j_S}$ est tangent à la surface et donc normal à $\vect{n_{12}}$
 
 
 
-\section[SER]{L'équation d'antenne et la section équivalente radar}
+\section[SER]{La section équivalente radar}
 \label{sec:rcs}
 
-On se place dans un cadre monostatique. Soient $G$ le gain de l'antenne, $P_t$ la puissance émise, $P_r$ la puissance réfléchie vers l'antenne, $\lambda$ la longueur d'onde d'émission, et $R$ la distance de la cible. La surface équivalente radar (SER) s'écrit :
-
-\begin{equation}
-	\sigma =\frac{(4\pi)^3R^4}{\lambda^2} \frac{P_r}{GP_t}=\frac{(4\pi)^3R^4}{G\lambda^2} \frac{|\E_\theta^r|^2+|\E_\phi^r|^2}{|\E_\theta^t|^2+|\E_\phi^t|^2},
-\end{equation}
-%
-où $E_X^r$ est le champ électrique reçu et $E_X^t$ est le champ électrique émis par l'antenne.
-
-
+On se place dans un cadre monostatique. La surface équivalente radar (SER) s'écrit :
 
 \begin{equation}
 	\label{eq:rcs_lim}
 	\sigma = \lim_{R\to\infty}4\pi R^2 \frac{|\E_s|^2}{|\E_i|^2}
 \end{equation}
+
+où $E_s$ est le champ électrique reçu et $E_i$ est le champ électrique émis par l'antenne.
 
 \section[Approximation PO]{L'approximation Optique Physique}
 \label{sec:equation_OP}
